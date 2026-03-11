@@ -4,38 +4,43 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Lined Up — Find Your Perfect Cut in Bethesda & DC</title>
-  <meta name="description" content="AI-powered barber matchmaker. Answer 4 questions, get your perfect cut recommendation, and book with the right barber."/>
+  <meta name="description" content="AI-powered barber matchmaker. Answer a few questions, get your perfect cut recommendation, and book with the right barber."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    body { background: #F5F0E8; }
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-thumb { background: rgba(30,20,10,0.2); border-radius: 2px; }
-    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,900;1,700;1,900&family=DM+Sans:wght@300;400;500;600&display=swap');
-    @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:translateY(0)} }
-    @keyframes spinCw { to{transform:rotate(360deg)} }
-    @keyframes stripes { from{background-position:0 0} to{background-position:0 40px} }
-    .fu  { animation: fadeUp 0.44s cubic-bezier(.22,.68,0,1.2) both; }
-    .fu2 { animation: fadeUp 0.44s 0.08s cubic-bezier(.22,.68,0,1.2) both; }
-    .fu3 { animation: fadeUp 0.44s 0.16s cubic-bezier(.22,.68,0,1.2) both; }
-    .nl  { font-family:'DM Sans',sans-serif; font-size:11px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; cursor:pointer; transition:color 0.18s; }
-    .nl:hover { color:#C1440E; }
-    .card { background:#fff; border:1px solid rgba(30,20,10,0.1); transition:box-shadow 0.2s,transform 0.2s; }
-    .card:hover { box-shadow:0 6px 28px rgba(30,20,10,0.08); transform:translateY(-2px); }
-    .btn { display:inline-block; border:none; cursor:pointer; font-family:'DM Sans',sans-serif; font-weight:600; letter-spacing:0.12em; text-transform:uppercase; transition:opacity 0.15s,transform 0.12s; }
-    .btn:hover { opacity:0.85; }
-    .btn:active { transform:scale(0.97); }
-    .bp { background:#C1440E; color:#fff; }
-    .bo { background:transparent; color:#1A1208; border:1.5px solid rgba(30,20,10,0.22); }
-    .bo:hover { border-color:#C1440E; color:#C1440E; opacity:1; }
-    .chip { display:inline-block; padding:4px 11px; font-family:'DM Sans',sans-serif; font-size:10px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; border:1px solid rgba(30,20,10,0.1); color:rgba(26,18,8,0.45); cursor:pointer; transition:all 0.15s; margin:2px; }
-    .chip:hover,.chip.on { border-color:#C1440E; color:#C1440E; background:rgba(193,68,14,0.07); }
-    textarea,input { font-family:'DM Sans',sans-serif; font-size:14px; font-weight:300; color:#1A1208; background:rgba(26,18,8,0.04); border:1.5px solid rgba(30,20,10,0.1); transition:border-color 0.2s; width:100%; padding:14px 16px; line-height:1.6; }
-    textarea:focus,input:focus { outline:none; border-color:#C1440E; background:#fff; }
-    textarea::placeholder,input::placeholder { color:rgba(26,18,8,0.4); }
-    .pole { width:5px; border-radius:3px; overflow:hidden; flex-shrink:0; background:repeating-linear-gradient(180deg,#C1440E 0,#C1440E 6px,#fff 6px,#fff 10px,#1A1208 10px,#1A1208 16px,#fff 16px,#fff 20px); background-size:5px 40px; animation:stripes 1s linear infinite; }
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{background:#F5F0E8;font-family:'DM Sans',sans-serif}
+    ::-webkit-scrollbar{width:4px}
+    ::-webkit-scrollbar-thumb{background:rgba(30,20,10,0.2);border-radius:2px}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    @keyframes stripes{from{background-position:0 0}to{background-position:0 40px}}
+    @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}
+    .fu{animation:fadeUp 0.4s cubic-bezier(.22,.68,0,1.2) both}
+    .fu1{animation:fadeUp 0.4s 0.05s cubic-bezier(.22,.68,0,1.2) both}
+    .fu2{animation:fadeUp 0.4s 0.1s cubic-bezier(.22,.68,0,1.2) both}
+    .fu3{animation:fadeUp 0.4s 0.15s cubic-bezier(.22,.68,0,1.2) both}
+    .pole{width:5px;border-radius:3px;overflow:hidden;flex-shrink:0;background:repeating-linear-gradient(180deg,#C1440E 0,#C1440E 6px,#fff 6px,#fff 10px,#1A1208 10px,#1A1208 16px,#fff 16px,#fff 20px);background-size:5px 40px;animation:stripes 1s linear infinite}
+    .btn{display:inline-block;border:none;cursor:pointer;font-family:'DM Sans',sans-serif;font-weight:600;letter-spacing:0.12em;text-transform:uppercase;transition:opacity 0.15s,transform 0.12s;text-align:center}
+    .btn:hover{opacity:0.85}.btn:active{transform:scale(0.97)}
+    .bp{background:#C1440E;color:#fff}
+    .bo{background:transparent;color:#1A1208;border:1.5px solid rgba(30,20,10,0.22)}
+    .bo:hover{border-color:#C1440E;color:#C1440E;opacity:1}
+    .card{background:#fff;border:1px solid rgba(30,20,10,0.1);transition:box-shadow 0.2s,transform 0.2s}
+    .card:hover{box-shadow:0 6px 28px rgba(30,20,10,0.08);transform:translateY(-2px)}
+    .nl{font-size:11px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;cursor:pointer;transition:color 0.18s}
+    .nl:hover{color:#C1440E}
+    .opt{padding:14px 18px;border:1.5px solid rgba(30,20,10,0.12);background:#fff;cursor:pointer;transition:all 0.15s;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;color:#1A1208;text-align:left;display:flex;align-items:center;gap:12;border-radius:2px}
+    .opt:hover{border-color:#C1440E;background:rgba(193,68,14,0.04)}
+    .opt.sel{border-color:#C1440E;background:rgba(193,68,14,0.07);color:#C1440E}
+    .chip{display:inline-block;padding:4px 11px;font-size:10px;font-weight:600;letter-spacing:0.14em;text-transform:uppercase;border:1px solid rgba(30,20,10,0.1);color:rgba(26,18,8,0.45);cursor:pointer;transition:all 0.15s;margin:2px}
+    .chip:hover,.chip.on{border-color:#C1440E;color:#C1440E;background:rgba(193,68,14,0.07)}
+    textarea,input{font-family:'DM Sans',sans-serif;font-size:14px;font-weight:300;color:#1A1208;background:rgba(26,18,8,0.04);border:1.5px solid rgba(30,20,10,0.1);transition:border-color 0.2s;width:100%;padding:14px 16px;line-height:1.6}
+    textarea:focus,input:focus{outline:none;border-color:#C1440E;background:#fff}
+    textarea::placeholder,input::placeholder{color:rgba(26,18,8,0.4)}
   </style>
 </head>
 <body>
@@ -43,239 +48,633 @@
 <script type="text/babel">
 const { useState, useRef } = React;
 
-const T = {
-  bg:"#F5F0E8", surface:"#FFFFFF",
-  border:"rgba(30,20,10,0.1)", borderStrong:"rgba(30,20,10,0.22)",
-  accent:"#C1440E", accentLight:"rgba(193,68,14,0.07)", accentMid:"rgba(193,68,14,0.2)",
-  ink:"#1A1208", muted:"rgba(26,18,8,0.45)", faint:"rgba(26,18,8,0.04)"
+const A = "#C1440E";
+const INK = "#1A1208";
+const BG = "#F5F0E8";
+const BORDER = "rgba(30,20,10,0.1)";
+const MUTED = "rgba(26,18,8,0.45)";
+const FAINT = "rgba(26,18,8,0.04)";
+const ACCENT_LIGHT = "rgba(193,68,14,0.07)";
+const ACCENT_MID = "rgba(193,68,14,0.2)";
+
+// ─── MASSIVE CUT DATABASE ────────────────────────────────────────────────────
+const CUTS = {
+  // FADES & TAPERS
+  "Skin Fade": {
+    vibe:"Clean", gender:["male","female","all"],
+    why:"A skin fade takes the sides down to bare skin and blends up seamlessly. It's one of the most versatile cuts — works on every face shape and hair type.",
+    ask:"I want a skin fade — bare skin at the bottom, blending up. Mid or high fade, your call based on my face shape. Keep the top [your preferred length].",
+    maintenance:"Every 2 weeks to keep the skin tight. The fade grows out fast.",
+    tip:"A true skin fade should have zero visible lines — that's how you spot a great barber.",
+    tags:["fades","tapers"]
+  },
+  "Mid Fade": {
+    vibe:"Fresh", gender:["male","female","all"],
+    why:"The mid fade starts around the temple — the most balanced and universally flattering position. Works on virtually every hair type and face shape.",
+    ask:"I want a mid fade — start the fade around the temple, blend down to skin or a 1. Leave [X inches] on top. Clean up my lineup.",
+    maintenance:"Every 2-3 weeks to keep it fresh.",
+    tip:"The mid fade is the most versatile fade — if you're unsure, start here.",
+    tags:["fades","tapers"]
+  },
+  "High Fade": {
+    vibe:"Bold", gender:["male","female","all"],
+    why:"A high fade starts above the temple and creates maximum contrast between the sides and top. Adds height and drama to any style.",
+    ask:"I want a high fade — start the fade high, above the temples. Skin or 1 at the bottom. Leave length on top for [your style].",
+    maintenance:"Every 1.5-2 weeks — high fades grow out the fastest.",
+    tip:"High fades look sharpest with a defined lineup. Always ask for the line to be cleaned up.",
+    tags:["fades","tapers"]
+  },
+  "Low Fade": {
+    vibe:"Classic", gender:["male","female","all"],
+    why:"A low fade hugs the hairline and gives a subtle, conservative taper. Professional and clean without being loud.",
+    ask:"I want a low fade — keep the fade close to the hairline, soft blend. More conservative, still clean.",
+    maintenance:"Every 3-4 weeks. Grows out cleanly.",
+    tip:"Low fades are the most office-friendly option — noticeable enough to look sharp, subtle enough for any environment.",
+    tags:["fades","tapers","classic"]
+  },
+  "Skin Taper": {
+    vibe:"Sharp", gender:["male","female","all"],
+    why:"A skin taper blends down to skin at the neckline and sideburns without a hard fade line. More natural-looking than a fade but just as clean.",
+    ask:"I want a skin taper — not a hard fade, more of a natural blend down to skin at the hairline. Keep the sides full.",
+    maintenance:"Every 3 weeks.",
+    tip:"If you want something low-key but still sharp, a skin taper is the move.",
+    tags:["tapers","classic"]
+  },
+  "Taper Fade": {
+    vibe:"Classic", gender:["male","female","all"],
+    why:"The taper fade combines the natural blend of a taper with the clean contrast of a fade. The standard barber cut — clean, professional, always looks right.",
+    ask:"I want a taper fade — 1 or 2 guard at the bottom blending up, mid fade position. Clean lineup.",
+    maintenance:"Every 2-3 weeks.",
+    tip:"Tell your barber the guard number you want at the bottom — it keeps the cut consistent every time.",
+    tags:["fades","tapers","classic"]
+  },
+  "Burst Fade": {
+    vibe:"Bold", gender:["male","female","all"],
+    why:"A burst fade radiates around the ear in a semicircle, creating a halo effect. Looks incredible with natural hair, mohawks, and curls.",
+    ask:"I want a burst fade — semicircle fade around the ear, radiating outward. Skin or 1 at the center blending up.",
+    maintenance:"Every 2 weeks.",
+    tip:"Burst fades look best with textured or natural hair on top — the contrast is stunning.",
+    tags:["fades","textured","natural"]
+  },
+  "Drop Fade": {
+    vibe:"Fresh", gender:["male","female","all"],
+    why:"A drop fade curves down behind the ear, following the natural hairline. Gives a more rounded, softer silhouette than a standard fade.",
+    ask:"I want a drop fade — curve it down behind the ear following my natural hairline. Skin or 1 at the bottom.",
+    maintenance:"Every 2 weeks.",
+    tip:"Drop fades are particularly flattering on rounder head shapes.",
+    tags:["fades","tapers"]
+  },
+  "Temp Fade": {
+    vibe:"Sharp", gender:["male","female","all"],
+    why:"A temp fade (temple fade) removes hair at the temples to sharpen your lineup and make your facial structure pop. Often paired with other cuts.",
+    ask:"I want my temples faded out — clean it up at the temples, sharp lines.",
+    maintenance:"Every 2 weeks.",
+    tip:"Temple fades instantly make any cut look sharper. Great add-on to any style.",
+    tags:["fades","shape-ups"]
+  },
+
+  // SHORT CUTS
+  "Buzz Cut": {
+    vibe:"Clean", gender:["male","female","all"],
+    why:"The most low-maintenance cut that still looks intentional. A uniform length all over grows out cleanly and looks good weeks later.",
+    ask:"I want a buzz cut — uniform length all over. [Guard number] on top, maybe one guard shorter on the sides.",
+    maintenance:"Every 4-6 weeks. Zero product needed.",
+    tip:"Go one guard longer than you think — it always looks shorter than expected.",
+    tags:["low-maintenance","classic","fades"]
+  },
+  "Induction Cut": {
+    vibe:"Minimal", gender:["male","female","all"],
+    why:"The shortest possible cut — nearly bare. Clean, cool in hot weather, and zero maintenance.",
+    ask:"I want it as short as possible without shaving it. Closest guard, even all over.",
+    maintenance:"Once a month or less.",
+    tip:"Pairs really well with a bold beard or statement jewelry.",
+    tags:["low-maintenance"]
+  },
+  "Shape-Up": {
+    vibe:"Sharp", gender:["male","female","all"],
+    why:"A shape-up sharpens your natural hairline — the front, temples, and back of the neck — without touching the length. Instantly makes any style look fresh.",
+    ask:"I just want a shape-up — clean up my edges, sharpen my hairline and temples. Don't touch the length.",
+    maintenance:"Every 2 weeks between full cuts.",
+    tip:"A $15 shape-up can make a 6-week-old cut look brand new.",
+    tags:["shape-ups","natural"]
+  },
+  "Lineup": {
+    vibe:"Sharp", gender:["male","female","all"],
+    why:"A crisp, geometric lineup along the front hairline creates a strong frame for your face. The foundation of any sharp look.",
+    ask:"I want my hairline lined up sharp — straight line across the front, squared temples.",
+    maintenance:"Every 2 weeks.",
+    tip:"Square lineups suit strong jawlines. Rounded lineups soften harsh features.",
+    tags:["shape-ups"]
+  },
+  "Crew Cut": {
+    vibe:"Classic", gender:["male"],
+    why:"Short on the sides, slightly longer on top — the crew cut is effortlessly masculine and professional. Works on every head shape.",
+    ask:"I want a crew cut — taper or low fade on the sides, keep the top short but with a little length. Brush-able.",
+    maintenance:"Every 3-4 weeks.",
+    tip:"Ask for a 'skin taper' instead of a fade if you want something more conservative.",
+    tags:["classic","low-maintenance"]
+  },
+  "French Crop": {
+    vibe:"Clean", gender:["male","female","all"],
+    why:"Short on the sides with a textured fringe that falls forward. Creates the illusion of density — great for fine or thin hair.",
+    ask:"I want a textured French crop — fade or taper on the sides, scissor-cut on top with a short textured fringe. Point-cut for texture.",
+    maintenance:"Every 3 weeks. Lightweight matte paste.",
+    tip:"The fringe should be textured, not blunt. Point-cutting makes it look intentional.",
+    tags:["fades","tapers","textured"]
+  },
+  "Caesar Cut": {
+    vibe:"Classic", gender:["male"],
+    why:"A short, horizontally cut fringe over a uniform short length. Clean, timeless, and very low maintenance.",
+    ask:"I want a Caesar cut — uniform short length with a horizontal blunt fringe. Keep it clean.",
+    maintenance:"Every 3-4 weeks.",
+    tip:"Works best with straight or slightly wavy hair.",
+    tags:["classic","low-maintenance"]
+  },
+  "Ivy League": {
+    vibe:"Preppy", gender:["male"],
+    why:"A longer crew cut with enough length on top to part and comb. The most polished short cut.",
+    ask:"I want an Ivy League — taper on the sides, leave enough length on top to part and comb to the side. Classic side part.",
+    maintenance:"Every 3-4 weeks. Light hold pomade.",
+    tip:"Ask for a hard part cut in if you want it to look ultra-crisp.",
+    tags:["classic","professional"]
+  },
+  "Flat Top": {
+    vibe:"Bold", gender:["male"],
+    why:"The flat top keeps hair standing straight up and cut level — a geometric, architectural look. Statement making.",
+    ask:"I want a flat top — sides faded tight, top cut perfectly level and flat. Keep it clean and geometric.",
+    maintenance:"Every 2 weeks — flat tops grow out quickly.",
+    tip:"Flat tops require hair with enough body to stand up. Works best with thick or coily hair.",
+    tags:["bold","classic","natural"]
+  },
+
+  // MEDIUM CUTS
+  "Textured Crop": {
+    vibe:"Fresh", gender:["male","female","all"],
+    why:"A modern short-to-medium cut with plenty of texture and movement. One of the most popular cuts right now.",
+    ask:"I want a textured crop — fade or taper on the sides, scissor-cut on top with lots of texture. Not too short, some movement.",
+    maintenance:"Every 3-4 weeks. Matte clay or paste.",
+    tip:"Don't over-style it — the texture looks best when it's slightly undone.",
+    tags:["textured","fades","tapers"]
+  },
+  "Side Part": {
+    vibe:"Classic", gender:["male","female"],
+    why:"A timeless professional cut that works in any environment. The side part gives structure and polish without looking stuffy.",
+    ask:"I want a classic side part — taper or fade on the sides, comb the top to the side. Hard part optional.",
+    maintenance:"Every 3-4 weeks. Light pomade or cream.",
+    tip:"Ask for a razor-cut hard part if you want the part to stay crisp all day.",
+    tags:["classic","professional"]
+  },
+  "Pompadour": {
+    vibe:"Bold", gender:["male","female"],
+    why:"Volume swept up and back from the forehead — one of the most iconic cuts in barbering history. Works on both classic and modern styles.",
+    ask:"I want a pompadour — fade the sides, leave 3-4 inches on top to sweep back. Texturize the top for volume.",
+    maintenance:"Every 2-3 weeks. Medium-hold pomade or clay.",
+    tip:"Ask for point-cutting on the top — removes bulk and gives thick hair movement.",
+    tags:["bold","fades","classic"]
+  },
+  "Undercut": {
+    vibe:"Sharp", gender:["male","female"],
+    why:"Hard disconnection between the short sides and longer top creates a bold, dramatic contrast. Endlessly versatile on top.",
+    ask:"I want an undercut — shave or clipper the sides very short with a hard disconnection. Leave length on top to style [how you want].",
+    maintenance:"Sides every 2-3 weeks. Top grows on your own schedule.",
+    tip:"The harder the disconnection, the more dramatic the look. Softer disconnection is more wearable.",
+    tags:["bold","fades","textured"]
+  },
+  "Disconnected Undercut": {
+    vibe:"Edgy", gender:["male","female"],
+    why:"An extreme version of the undercut — the contrast between sides and top is sharp and intentional. Very fashion-forward.",
+    ask:"I want a disconnected undercut — clipper or shave the sides with a clear, hard line. Long on top.",
+    maintenance:"Every 2 weeks on sides.",
+    tip:"Great canvas for creative top styles — slicked back, textured, braided, or natural.",
+    tags:["bold","edgy"]
+  },
+  "Quiff": {
+    vibe:"Fresh", gender:["male"],
+    why:"Volume at the front that falls naturally — less structured than a pompadour but more styled than a textured crop. Very versatile.",
+    ask:"I want a quiff — taper or fade on the sides, leave length at the front for volume. Scissor-cut the top.",
+    maintenance:"Every 3-4 weeks. Light to medium hold product.",
+    tip:"The quiff works on straight, wavy, and lightly textured hair. Ask for more length at the front.",
+    tags:["textured","fades","tapers"]
+  },
+  "Slick Back": {
+    vibe:"Sharp", gender:["male","female"],
+    why:"All the hair swept straight back — clean, powerful, and timeless. Works casual or formal.",
+    ask:"I want to slick my hair back — fade or taper the sides, leave length on top to sweep back. Use a fine-tooth comb.",
+    maintenance:"Every 3-4 weeks. Medium-hold pomade.",
+    tip:"Use a water-based pomade for flexible hold; oil-based for a wetter, harder hold.",
+    tags:["classic","fades"]
+  },
+
+  // LONG & MEDIUM-LONG
+  "Long Hair Trim": {
+    vibe:"Fresh", gender:["male","female","all"],
+    why:"After growing your hair out, a trim removes dead ends and split ends without sacrificing length. Keeps it healthy and intentional.",
+    ask:"I want to keep my length — please trim the dead ends only, half an inch to one inch max. Shape it so it looks intentional. No big cuts.",
+    maintenance:"Every 8-12 weeks for a light trim.",
+    tip:"Be very specific: say the exact inches you want off. 'Just a trim' means different things to different barbers.",
+    tags:["long hair","natural"]
+  },
+  "Long Layers": {
+    vibe:"Natural", gender:["female","all"],
+    why:"Layers add movement and remove bulk from long hair without reducing length. Makes hair look alive instead of flat.",
+    ask:"I want long layers — keep the length, add layers throughout for movement. No blunt cut, I want it to flow.",
+    maintenance:"Every 10-12 weeks.",
+    tip:"Ask for 'face-framing layers' around the front if you want it to complement your face shape.",
+    tags:["long hair","natural"]
+  },
+  "Blunt Cut": {
+    vibe:"Clean", gender:["female","all"],
+    why:"A straight, even cut across all the hair — no layers. Creates a strong, graphic silhouette. Very modern.",
+    ask:"I want a blunt cut — all one length, cut straight across. No layers, no graduation.",
+    maintenance:"Every 8 weeks to keep the ends clean.",
+    tip:"Blunt cuts look sharpest on straight or slightly wavy hair. Curly hair can look boxy.",
+    tags:["long hair","classic"]
+  },
+  "Wolf Cut": {
+    vibe:"Edgy", gender:["female","all"],
+    why:"A mix of a shag and a mullet — lots of layers, volume at the crown, and a wispy, lived-in finish. The it-cut of the moment.",
+    ask:"I want a wolf cut — lots of layers, choppy and textured. Volume at the crown, wispy ends. Curtain bangs optional.",
+    maintenance:"Every 8-10 weeks. Air dry or diffuse.",
+    tip:"Ask for 'curtain bangs' to frame your face — they complete the wolf cut look.",
+    tags:["long hair","textured","edgy","shag"]
+  },
+  "Bun / Top Knot": {
+    vibe:"Natural", gender:["male","female","all"],
+    why:"Long hair pulled up into a bun or top knot. Low maintenance, versatile, and stylish. The barber cleans up the underneath and sides.",
+    ask:"I want to keep my length for a bun — please just clean up the sides and back. Taper or undercut underneath optional.",
+    maintenance:"Every 8-12 weeks for a cleanup.",
+    tip:"An undercut underneath makes the bun look cleaner and keeps the sides from looking scraggly.",
+    tags:["long hair","natural","low-maintenance"]
+  },
+  "Curtain Bangs": {
+    vibe:"Soft", gender:["female","all"],
+    why:"Center-parted bangs that sweep to each side like curtains. Extremely face-flattering and very versatile.",
+    ask:"I want curtain bangs — part them in the center, sweep them to each side. Blend them into the rest of my hair.",
+    maintenance:"Every 6-8 weeks to keep the shape.",
+    tip:"Curtain bangs work with almost every face shape. They elongate round faces and soften square ones.",
+    tags:["long hair","textured"]
+  },
+  "Shag Cut": {
+    vibe:"Edgy", gender:["female","all"],
+    why:"Lots of layers, a choppy texture, and usually some kind of bang. Rock and roll energy with a modern edge.",
+    ask:"I want a shag — heavy layers, choppy texture, some kind of bang. Lived-in, not polished.",
+    maintenance:"Every 8-10 weeks.",
+    tip:"Ask for 'razor-cut layers' — a razor gives the shag its signature wispy, undone texture.",
+    tags:["long hair","textured","edgy","shag"]
+  },
+
+  // MULLETS & MOD CUTS
+  "Modern Mullet": {
+    vibe:"Edgy", gender:["male","female","all"],
+    why:"Business in the front, party in the back — but make it fashion. The modern mullet has a cropped front, faded sides, and a deliberate longer back.",
+    ask:"I want a modern mullet — fade or taper the sides tight, short on top at the front, leave length at the back. Make it intentional, not accidental.",
+    maintenance:"Every 3-4 weeks to keep the shape.",
+    tip:"The key is the fade — a tight fade on the sides is what separates a modern mullet from an accidental one.",
+    tags:["mullet","edgy","fades"]
+  },
+  "Mullet Shag": {
+    vibe:"Edgy", gender:["female","all"],
+    why:"The shag and mullet combined — layers throughout, shorter in the front, longer in the back, and lots of texture. Maximum personality.",
+    ask:"I want a mullet shag — layers throughout, shorter front, longer back, lots of texture. Choppy, not polished.",
+    maintenance:"Every 8-10 weeks.",
+    tip:"A diffuser brings out the texture on wavy or curly mullet shags beautifully.",
+    tags:["mullet","shag","edgy","long hair"]
+  },
+  "Classic Mullet": {
+    vibe:"Bold", gender:["male"],
+    why:"The original — short sides, short front, long back. Iconic and intentional when done right.",
+    ask:"I want a classic mullet — short and clean on the front and sides, leave the length at the back.",
+    maintenance:"Every 4-6 weeks.",
+    tip:"Keep the back moisturized and detangled — the back length is the whole point.",
+    tags:["mullet","bold","classic"]
+  },
+  "Mod Cut": {
+    vibe:"Retro", gender:["male","female","all"],
+    why:"Inspired by 1960s British style — a geometric bowl-like shape with a straight fringe and clean perimeter. Very graphic and intentional.",
+    ask:"I want a mod cut — geometric shape, clean straight fringe, sharp perimeter. Inspired by 60s British style.",
+    maintenance:"Every 4-6 weeks to keep the shape clean.",
+    tip:"Mod cuts look best on straight or very slightly wavy hair — the geometry needs to be clear.",
+    tags:["mod","retro","classic"]
+  },
+
+  // NATURAL & TEXTURED
+  "TWA (Teeny Weeny Afro)": {
+    vibe:"Natural", gender:["female","all"],
+    why:"A very short natural style that celebrates your curl pattern at its smallest. Bold, beautiful, and requires zero heat.",
+    ask:"I want a TWA — keep my natural texture, shape it into a clean, even shape. No straightening.",
+    maintenance:"Moisturize daily. Shape every 4-6 weeks.",
+    tip:"Wear it proud. A well-shaped TWA is one of the most powerful looks in the game.",
+    tags:["natural","4c","coily","afro"]
+  },
+  "Natural Afro": {
+    vibe:"Natural", gender:["male","female","all"],
+    why:"Your natural curl pattern shaped into a full, rounded afro. Let the volume speak for itself.",
+    ask:"I want my natural afro shaped — pick it out and shape it into an even, rounded silhouette. Clean up the edges.",
+    maintenance:"Pick and shape weekly. Moisturize daily.",
+    tip:"Ask your barber to shape it dry after picking. Cutting it wet causes shrinkage surprises.",
+    tags:["natural","afro","4c","coily"]
+  },
+  "High Top Fade": {
+    vibe:"Bold", gender:["male","female","all"],
+    why:"Tight fade on the sides, natural or flat-top height on top. Iconic 90s energy that's having a major comeback.",
+    ask:"I want a high top fade — skin fade on the sides, keep my natural height on top. Shape the top into a flat or rounded silhouette.",
+    maintenance:"Every 2-3 weeks for the fade. Shape the top weekly.",
+    tip:"Come in with your hair moisturized and stretched so your barber can see the full height.",
+    tags:["fades","natural","afro","bold"]
+  },
+  "Tapered Natural": {
+    vibe:"Natural", gender:["male","female","all"],
+    why:"Your natural texture on top with a soft taper on the sides. Polished without sacrificing your curl pattern.",
+    ask:"I want a tapered natural — soft taper on the sides, not a hard fade. Keep my natural texture on top, round and even.",
+    maintenance:"Every 3-4 weeks for a shape-up.",
+    tip:"The LOC method (Liquid, Oil, Cream) keeps natural hair moisturized between appointments.",
+    tags:["natural","tapers","4c","coily"]
+  },
+  "Loc Retwist": {
+    vibe:"Natural", gender:["male","female","all"],
+    why:"Regular retwisting keeps new growth tight and your part lines clean. The foundation of healthy loc maintenance.",
+    ask:"I need a full retwist — palm-roll technique. Keep all the length. Clean up my hairline and edges.",
+    maintenance:"Every 4-6 weeks. Sleep in a satin bonnet or on a satin pillowcase.",
+    tip:"Ask your barber to retwist in the direction your locs naturally turn — fighting it causes slippage.",
+    tags:["locs","natural"]
+  },
+  "Loc Shape-Up": {
+    vibe:"Sharp", gender:["male","female","all"],
+    why:"A shape-up on your hairline and edges to frame your locs and keep the look intentional.",
+    ask:"I want my loc edges cleaned up — sharp shape-up on my hairline, clean up the perimeter.",
+    maintenance:"Every 3-4 weeks between full retwists.",
+    tip:"A sharp lineup is what separates loc maintenance from loc style.",
+    tags:["locs","shape-ups","natural"]
+  },
+  "360 Waves": {
+    vibe:"Smooth", gender:["male"],
+    why:"A wave pattern that radiates 360 degrees around the head — achieved through consistent brushing and maintenance.",
+    ask:"I want a 360 wave taper — taper fade on the sides, skin or 1 at the bottom blending up to a 2 or 3. Don't cut the top, just clean up edges.",
+    maintenance:"Brush 2-3 times daily with grain. Sleep with a durag every night.",
+    tip:"Never cut against the grain on top. Cutting with the grain preserves your wave pattern.",
+    tags:["waves","tapers","fades"]
+  },
+  "Bantu Knots": {
+    vibe:"Natural", gender:["female","all"],
+    why:"Small sections of hair coiled and knotted close to the scalp. A protective style with beautiful dimension.",
+    ask:"I want Bantu knots — section my hair into even parts and coil each one into a tight knot.",
+    maintenance:"Refresh every 2-3 weeks. Moisturize the scalp regularly.",
+    tip:"Sleep in a satin bonnet to keep them neat and moisturized overnight.",
+    tags:["natural","protective","4c","coily"]
+  },
+  "Twist Out": {
+    vibe:"Natural", gender:["male","female","all"],
+    why:"Two-strand twists are set and then unraveled to reveal a defined, elongated curl pattern.",
+    ask:"I want a twist out set — two-strand twists throughout, I'll unravel them when dry for definition.",
+    maintenance:"Refresh with water and leave-in conditioner. Re-twist weekly.",
+    tip:"Let twists dry completely before unraveling — impatience leads to frizz.",
+    tags:["natural","4c","coily","curly"]
+  },
+  "Curly Shag": {
+    vibe:"Natural", gender:["female","all"],
+    why:"A shag cut designed specifically for curly hair — layers that enhance your curl pattern and give it movement and bounce.",
+    ask:"I want a curly shag — cut it dry, follow my curl pattern. Lots of layers, curtain bangs optional.",
+    maintenance:"Every 8-10 weeks. Diffuse or air dry.",
+    tip:"Always insist on dry cutting for curly shags. Wet cutting causes shrinkage surprises.",
+    tags:["curly","shag","long hair","textured"]
+  },
+  "Curly Undercut": {
+    vibe:"Sharp", gender:["male","female","all"],
+    why:"Shaved or closely clipped sides with your natural curls on top. The contrast is stunning.",
+    ask:"I want a curly undercut — clipper or shave the sides short, leave my curls natural on top. Shape the top but don't straighten.",
+    maintenance:"Sides every 2-3 weeks. Refresh curls with water and curl cream.",
+    tip:"Always cut curly hair dry on the natural sections.",
+    tags:["curly","undercut","fades"]
+  },
+  "Wash and Go": {
+    vibe:"Natural", gender:["female","all"],
+    why:"A styling method that defines your natural curl pattern with minimal manipulation — just water and product.",
+    ask:"I want a trim for my wash and go — remove dead ends without disturbing my curl pattern. Cut dry.",
+    maintenance:"Every 10-12 weeks for a trim.",
+    tip:"Ask your barber to dust the ends rather than doing a full cut — preserves max length.",
+    tags:["curly","natural","low-maintenance"]
+  },
+
+  // BEARD WORK
+  "Beard Shape-Up": {
+    vibe:"Sharp", gender:["male"],
+    why:"A clean beard line-up defines your jawline and makes everything from a 3-day stubble to a full beard look intentional.",
+    ask:"I want my beard lined up — sharp cheek lines, neck line cleaned up. Shape it to complement my face.",
+    maintenance:"Every 2 weeks.",
+    tip:"The neck line matters as much as the cheek line. Ask for it to be defined.",
+    tags:["beard","shape-ups"]
+  },
+  "Beard Fade": {
+    vibe:"Sharp", gender:["male"],
+    why:"The beard fades up into the skin fade on the sides — a seamless connection that looks incredibly polished.",
+    ask:"I want my beard to fade up into my skin fade — seamless connection, no hard line between beard and fade.",
+    maintenance:"Every 2 weeks with your fade.",
+    tip:"A beard fade requires a barber who can blend two textures — ask to see their work first.",
+    tags:["beard","fades"]
+  },
+
+  // WOMEN / ALL GENDER SPECIFIC
+  "Pixie Cut": {
+    vibe:"Bold", gender:["female","all"],
+    why:"Short all over with slightly more length on top — the pixie is effortlessly chic and works with any face shape.",
+    ask:"I want a pixie cut — short on the sides and back, leave a little more length on top. Textured or smooth, your call.",
+    maintenance:"Every 4-6 weeks.",
+    tip:"A pixie with a side-swept front is the most universally flattering version.",
+    tags:["short","bold","classic"]
+  },
+  "Bob": {
+    vibe:"Classic", gender:["female","all"],
+    why:"A chin-length cut that never goes out of style. Can be blunt, textured, or asymmetric.",
+    ask:"I want a bob — chin length, [blunt/textured/stacked]. Clean and intentional.",
+    maintenance:"Every 6-8 weeks.",
+    tip:"A stacked bob has layers at the back that give it more volume and shape.",
+    tags:["classic","long hair"]
+  },
+  "Lob (Long Bob)": {
+    vibe:"Classic", gender:["female","all"],
+    why:"A bob that hits at the collarbone — longer, more versatile, and works on more hair types.",
+    ask:"I want a lob — collarbone length, [blunt/layered]. Clean ends.",
+    maintenance:"Every 8 weeks.",
+    tip:"Add a few face-framing layers to give your lob movement without losing length.",
+    tags:["classic","long hair"]
+  },
+  "Asymmetric Bob": {
+    vibe:"Edgy", gender:["female","all"],
+    why:"One side longer than the other — creates dynamic movement and a fashion-forward look.",
+    ask:"I want an asymmetric bob — one side noticeably shorter. Make it sharp and intentional.",
+    maintenance:"Every 4-6 weeks to maintain the asymmetry.",
+    tip:"The more dramatic the difference, the bolder the look. Start subtle if unsure.",
+    tags:["edgy","classic"]
+  },
+  "Undercut Pixie": {
+    vibe:"Edgy", gender:["female","all"],
+    why:"A pixie with the sides shaved or clipped close — dramatic contrast and serious edge.",
+    ask:"I want an undercut pixie — shave or closely fade the sides, keep length on top and front.",
+    maintenance:"Every 3-4 weeks on the sides.",
+    tip:"Works beautifully with natural, textured, or fine hair.",
+    tags:["short","edgy","fades","undercut"]
+  },
 };
 
-function generateCutResult(answers) {
-  const hair  = (answers.hair_type  || "").toLowerCase();
-  const face  = (answers.face_shape || "").toLowerCase();
-  const goal  = (answers.style_goal || "").toLowerCase();
-  const extra = (answers.extra      || "").toLowerCase();
-  const all   = hair + " " + face + " " + goal + " " + extra;
+// ─── BARBERS ────────────────────────────────────────────────────────────────
+const BARBERS = [
+  {id:1,name:"Marcus \"The Sculptor\" Webb",shop:"Precision Cuts",neighborhood:"Bethesda, MD",specialties:["fades","tapers","shape-ups","beard sculpting"],rating:4.9,reviews:312,wait:"~20 min",price:"$$",platform:"Booksy",tags:["FADE KING","BEARD WORK"],bio:"15 years in the game. Known for surgical fades and crisp lines."},
+  {id:2,name:"Destiny \"D-Loc\" Charles",shop:"The Loc Studio",neighborhood:"Silver Spring, MD",specialties:["locs","natural hair","retwist","protective styles"],rating:5.0,reviews:178,wait:"By appt",price:"$$$",platform:"Squire",tags:["LOC SPECIALIST","NATURAL HAIR"],bio:"Certified loc technician with a deep understanding of hair health."},
+  {id:3,name:"Tony Reyes",shop:"Old School Barbershop",neighborhood:"Rockville, MD",specialties:["classic cuts","pompadour","mullet","kids cuts"],rating:4.8,reviews:524,wait:"~35 min",price:"$",platform:"Booksy",tags:["CLASSIC CUTS","KIDS WELCOME"],bio:"Third generation barber. No frills, just clean cuts."},
+  {id:4,name:"Jordan \"JK\" Kim",shop:"Fresh Canvas Studio",neighborhood:"Chevy Chase, MD",specialties:["curly hair","wolf cut","shag","undercut","color"],rating:4.9,reviews:267,wait:"~15 min",price:"$$$",platform:"Squire",tags:["CURLY SPECIALIST","COLOR WORK"],bio:"Specializes in textured and curly hair. Every cut is customized to your curl pattern."},
+  {id:5,name:"Big Mike Thompson",shop:"Waves & Fades",neighborhood:"Bethesda, MD",specialties:["waves","360 waves","high top fade","tapered natural"],rating:4.9,reviews:441,wait:"~25 min",price:"$$",platform:"Booksy",tags:["WAVE WHISPERER","360 WAVES"],bio:"If you're trying to get your waves right, this is your guy."},
+  {id:6,name:"Sofia Mendez",shop:"Cortes Studio",neighborhood:"Takoma Park, MD",specialties:["women's cuts","pixie","bob","wolf cut","lob"],rating:4.8,reviews:389,wait:"~30 min",price:"$$",platform:"Squire",tags:["ALL GENDERS","WOMEN'S CUTS"],bio:"Specializes in all gender cuts. Bilingual."},
+];
 
-  const isLong    = /long|length|grow|growing|keep|bun|ponytail|flow/.test(hair);
-  const isLocs    = /loc|dread/.test(hair);
-  const isWaves   = /wave|360|brush/.test(hair);
-  const is4c      = /4c|4b|coil|coily|tight curl|afro|twa/.test(hair);
-  const isCurly   = /curl|curly|type 2|type 3|ringlet/.test(hair);
-  const isThick   = /thick|coarse|dense|heavy/.test(hair);
-  const isThin    = /thin|fine|limp|flat|thinning|receding/.test(hair);
-  const noHaircut = /year|years|months|long time|been a while|haven't cut|havent cut/.test(all);
-  const wantsLow  = /low main|easy|simple|quick|no fuss|minimum/.test(goal);
-  const wantsPro  = /professional|work|office|interview|business/.test(goal);
-  const wantsBold = /bold|different|edgy|statement/.test(goal);
-  const wantsFade = /fade|fresh|clean|taper/.test(goal);
-  const isRound   = /round/.test(face);
-  const isSquare  = /square|strong jaw|wide jaw|angular/.test(face);
+// ─── QUIZ STEPS (click-based) ───────────────────────────────────────────────
+const STEPS = [
+  {
+    id:"gender", q:"Who are you getting this cut for?", type:"single",
+    opts:[
+      {val:"male",   icon:"♂", label:"Man"},
+      {val:"female", icon:"♀", label:"Woman"},
+      {val:"all",    icon:"◈", label:"Non-binary / All"},
+    ]
+  },
+  {
+    id:"length", q:"How long is your hair right now?", type:"single",
+    opts:[
+      {val:"very short", icon:"▪", label:"Very short / buzzed"},
+      {val:"short",      icon:"▫", label:"Short (under 2 inches)"},
+      {val:"medium",     icon:"◽", label:"Medium (ears to chin)"},
+      {val:"long",       icon:"◻", label:"Long (chin and below)"},
+    ]
+  },
+  {
+    id:"texture", q:"What's your hair texture?", type:"single",
+    opts:[
+      {val:"straight",   icon:"〰", label:"Straight"},
+      {val:"wavy",       icon:"〜", label:"Wavy"},
+      {val:"curly",      icon:"⌇", label:"Curly (loose to tight)"},
+      {val:"coily",      icon:"✦", label:"Coily / 4c / Natural"},
+      {val:"locs",       icon:"⟋", label:"Locs / Dreadlocks"},
+      {val:"waves",      icon:"≋", label:"360 Waves"},
+    ]
+  },
+  {
+    id:"vibe", q:"What's the vibe you're going for?", type:"multi",
+    hint:"Pick up to 3",
+    opts:[
+      {val:"clean",        icon:"◻", label:"Clean & fresh"},
+      {val:"professional", icon:"◈", label:"Professional"},
+      {val:"bold",         icon:"★", label:"Bold & statement"},
+      {val:"natural",      icon:"◯", label:"Natural & low manipulation"},
+      {val:"edgy",         icon:"◆", label:"Edgy / fashion-forward"},
+      {val:"low-maint",    icon:"◌", label:"Low maintenance"},
+      {val:"classic",      icon:"▲", label:"Classic / timeless"},
+      {val:"retro",        icon:"◉", label:"Retro / vintage"},
+    ]
+  },
+  {
+    id:"extra", q:"Anything else your barber should know?", type:"text",
+    placeholder:"e.g. haven't cut in 6 months, job interview next week, want to keep length...",
+    optional:true
+  },
+];
 
-  // Long hair always wins — don't cut it short
+// ─── RECOMMENDATION LOGIC ───────────────────────────────────────────────────
+function recommend(answers) {
+  const gender  = answers.gender  || "all";
+  const length  = answers.length  || "short";
+  const texture = answers.texture || "straight";
+  const vibes   = answers.vibe    || [];
+  const extra   = (answers.extra  || "").toLowerCase();
+
+  const isBold    = vibes.includes("bold");
+  const isEdgy    = vibes.includes("edgy");
+  const isNatural = vibes.includes("natural");
+  const isLowM    = vibes.includes("low-maint");
+  const isPro     = vibes.includes("professional");
+  const isClean   = vibes.includes("clean");
+  const isClassic = vibes.includes("classic");
+  const isRetro   = vibes.includes("retro");
+
+  const isLong   = length === "long";
+  const isMedium = length === "medium";
+  const isShort  = length === "short" || length === "very short";
+
+  const noHaircut = /year|months|long time|been a while|haven't|havent/.test(extra);
+
+  // LOCS
+  if (texture === "locs") {
+    if (noHaircut || isNatural) return ["Loc Retwist", "Loc Shape-Up"];
+    return ["Loc Retwist", "Loc Shape-Up"];
+  }
+
+  // WAVES
+  if (texture === "waves") return ["360 Waves", "Taper Fade"];
+
+  // COILY / 4C
+  if (texture === "coily") {
+    if (isLong)   return isNatural ? ["Tapered Natural","Loc Retwist"] : ["High Top Fade","Natural Afro"];
+    if (isBold)   return ["High Top Fade","Burst Fade","Natural Afro"];
+    if (isLowM)   return ["TWA (Teeny Weeny Afro)","Natural Afro"];
+    if (isNatural)return ["Tapered Natural","Natural Afro","Twist Out"];
+    return ["Tapered Natural","High Top Fade","Natural Afro"];
+  }
+
+  // CURLY
+  if (texture === "curly") {
+    if (isLong && gender !== "male")  return ["Curly Shag","Wolf Cut","Long Layers"];
+    if (isLong)                       return ["Curly Undercut","Undercut"];
+    if (isMedium && isEdgy)           return ["Wolf Cut","Curly Shag"];
+    if (isMedium)                     return ["Textured Crop","Curly Undercut"];
+    if (isPro)                        return ["Disconnected Undercut","Textured Crop"];
+    return ["Textured Crop","Curly Undercut","Wash and Go"];
+  }
+
+  // LONG HAIR
   if (isLong) {
-    if (noHaircut) return {
-      recommended_cut: "Long Hair Trim & Shape",
-      why_it_works: "After a long break from cuts, your hair needs a clean-up trim to remove split ends and dead weight — not a full style change. We preserve your length while making it look intentional and healthy again.",
-      how_to_ask: "I want to keep my length — please just trim the dead ends, maybe half an inch to an inch max. Shape it so it looks intentional. No big cuts.",
-      maintenance: "Come back every 8-12 weeks for a light trim to keep the ends healthy. Use a deep conditioner weekly to restore any damage from the growth period.",
-      pro_tip: "Be very specific with 'keep my length' — say the exact inches you want taken off. Some barbers hear 'trim' and take 3 inches.",
-      vibe: "Fresh",
-      match_keywords: ["classic", "natural hair"]
-    };
-    if (isLocs) return {
-      recommended_cut: "Loc Length Maintenance & Retwist",
-      why_it_works: "Long locs need regular retwisting at the roots to keep new growth tight while preserving the length you've grown. A shape-up keeps the overall look clean without sacrificing your journey.",
-      how_to_ask: "I want a full retwist on my roots, palm-roll technique. Keep all the length — just clean up my hairline and edges. No trimming the ends unless they're severely damaged.",
-      maintenance: "Retwist every 4-6 weeks. Sleep in a satin bonnet or on a satin pillowcase every night. Moisturize with a light loc oil 2-3 times a week.",
-      pro_tip: "Long locs are heavy — ask your barber about loc thinning if you're getting tension headaches. Removing a few locs carefully can relieve the weight without losing the look.",
-      vibe: "Natural",
-      match_keywords: ["locs", "natural hair"]
-    };
-    if (isCurly || is4c) return {
-      recommended_cut: "Long Curly Shape & Define",
-      why_it_works: "Long curly hair just needs its shape cleaned up and dead ends removed. Cutting curly hair correctly — dry, following the curl pattern — makes it look intentional and defined without losing the length.",
-      how_to_ask: "I want to keep my length. Please cut curly hair dry, following the curl pattern. Just remove split ends and shape the perimeter. No straightening before cutting.",
-      maintenance: "Every 3-4 months for a light shape. Deep condition weekly. Refresh curls daily with a water and leave-in conditioner spritz.",
-      pro_tip: "Never let anyone cut your curly hair wet — it springs up shorter than expected when dry. Always insist on dry cutting for curly hair.",
-      vibe: "Natural",
-      match_keywords: ["curly", "textured", "natural hair"]
-    };
-    return {
-      recommended_cut: "Long Hair Style & Clean Up",
-      why_it_works: "Long hair with good structure looks intentional and confident. A light shape-up cleans the perimeter and removes dead ends while keeping the length you've been growing.",
-      how_to_ask: "I want to keep my length — just clean up the ends and shape it. No more than half an inch off. Clean up around the ears and neck.",
-      maintenance: "Every 8-10 weeks for maintenance trims. Use a leave-in conditioner to keep it healthy and manageable.",
-      pro_tip: "If you want your long hair to look styled rather than just grown-out, ask for face-framing layers — they add shape without reducing length.",
-      vibe: "Fresh",
-      match_keywords: ["classic", "tapers"]
-    };
+    if (noHaircut)                         return ["Long Hair Trim","Long Layers"];
+    if (isEdgy && gender !== "male")       return ["Wolf Cut","Mullet Shag","Shag Cut"];
+    if (isEdgy)                            return ["Modern Mullet","Wolf Cut"];
+    if (isBold && gender !== "male")       return ["Wolf Cut","Asymmetric Bob"];
+    if (isRetro)                           return ["Shag Cut","Mod Cut"];
+    if (isNatural || isLowM)               return ["Bun / Top Knot","Long Hair Trim","Long Layers"];
+    if (gender !== "male")                 return ["Long Layers","Lob (Long Bob)","Curtain Bangs"];
+    return ["Bun / Top Knot","Slick Back","Modern Mullet"];
   }
 
-  if (isLocs) return {
-    recommended_cut: "Loc Retwist & Shape",
-    why_it_works: "Your locs need regular retwisting to keep new growth tight and your part lines clean. A shape-up around the hairline will frame your face and keep everything looking intentional.",
-    how_to_ask: "I need a full retwist, palm-roll technique, and a clean shape-up on my hairline and edges. Keep the length.",
-    maintenance: "Come back every 4-6 weeks for retwist. Moisturize with a light loc oil and sleep with a satin cap.",
-    pro_tip: "Ask your barber to retwist in the direction your locs naturally want to turn — forcing the opposite direction causes slippage.",
-    vibe: "Natural",
-    match_keywords: ["locs", "natural hair"]
-  };
-
-  if (isWaves) return {
-    recommended_cut: "360 Wave Taper",
-    why_it_works: "A tight taper on the sides keeps your wave pattern visible and sharp. The length on top stays long enough to maintain your 360 pattern.",
-    how_to_ask: "I want a taper fade on the sides — skin or 1 at the bottom, blending up to a 2 or 3. Don't cut the top, just clean up my edges and part.",
-    maintenance: "Come back every 2-3 weeks. Brush 2-3 times daily with your grain. Sleep with a durag every night.",
-    pro_tip: "Tell your barber to cut with the grain on top, never against it.",
-    vibe: "Smooth",
-    match_keywords: ["waves", "tapers"]
-  };
-
-  if (is4c) {
-    if (wantsFade || wantsBold) return {
-      recommended_cut: "High-Top Fade or Burst Fade with Natural Top",
-      why_it_works: "Your coily texture is a statement on its own — a clean fade underneath lifts it and makes it look intentional and bold.",
-      how_to_ask: "I want my natural texture left on top, shaped into a clean rounded or squared silhouette. Fade the sides — skin or 1 guard at the bottom blending up. Clean up my lineup sharp.",
-      maintenance: "Shape-up every 2-3 weeks. Moisturize daily with a leave-in cream. Stretch with a blow dryer on low heat before your appointment.",
-      pro_tip: "Come in with your hair moisturized and stretched, not shrunken.",
-      vibe: "Bold",
-      match_keywords: ["fades", "natural", "textured"]
-    };
-    return {
-      recommended_cut: "Tapered Natural",
-      why_it_works: "A tapered natural keeps your coily texture at the center of the look while the fade gives it structure and definition.",
-      how_to_ask: "I want my natural texture on top, tapered on the sides — not a hard fade, more of a soft blend from a 2 up to my natural hair. Keep the top round and even.",
-      maintenance: "Every 3-4 weeks for a shape-up. Use the LOC method (liquid, oil, cream) to keep shrinkage manageable.",
-      pro_tip: "A light twist-out before your appointment shows your barber your curl pattern at its best.",
-      vibe: "Natural",
-      match_keywords: ["natural", "tapers", "textured"]
-    };
+  // MEDIUM HAIR
+  if (isMedium) {
+    if (isEdgy && gender !== "male")  return ["Wolf Cut","Shag Cut","Bob"];
+    if (isEdgy)                       return ["Modern Mullet","Undercut"];
+    if (isRetro)                      return ["Mod Cut","Pompadour"];
+    if (isBold)                       return ["Pompadour","Undercut","High Fade"];
+    if (isPro)                        return ["Side Part","Ivy League","Pompadour"];
+    if (isClassic)                    return ["Side Part","Pompadour","Bob"];
+    if (gender !== "male")            return ["Lob (Long Bob)","Bob","Wolf Cut"];
+    return ["Textured Crop","Quiff","Side Part"];
   }
 
-  if (isCurly) {
-    if (wantsPro) return {
-      recommended_cut: "Textured Crop with Disconnected Undercut",
-      why_it_works: "The undercut removes bulk from the sides while letting your curls sit cleanly on top. Professional without destroying your natural texture.",
-      how_to_ask: "I want a disconnected undercut — clipper the sides short (2 or 3 guard), scissor-cut the top to keep my curl pattern. Don't use a razor on the top.",
-      maintenance: "Sides every 3 weeks, full cut every 6-8 weeks. Use a curl cream on wet hair and scrunch upward.",
-      pro_tip: "Always ask to be cut dry on the curly sections.",
-      vibe: "Sharp",
-      match_keywords: ["curly", "textured"]
-    };
-    return {
-      recommended_cut: "Curly Medium Length with Taper",
-      why_it_works: "Keeping medium length on top lets your curl pattern breathe. A soft taper on the sides keeps it clean.",
-      how_to_ask: "I want my curls left natural on top — just take off any dead ends and shape it. Taper the sides with scissors or a 3 guard, no skin fade.",
-      maintenance: "Every 6-8 weeks. Refresh curls daily with a water spritz and curl cream.",
-      pro_tip: "If your barber reaches for a comb to pull your curls straight before cutting, stop them.",
-      vibe: "Fresh",
-      match_keywords: ["curly", "textured"]
-    };
+  // SHORT HAIR
+  if (gender !== "male") {
+    if (isBold || isEdgy)   return ["Undercut Pixie","Pixie Cut","High Fade"];
+    if (isClassic)          return ["Pixie Cut","French Crop","Crew Cut"];
+    return ["Pixie Cut","French Crop","Textured Crop"];
   }
 
-  if (isThick) {
-    if (wantsBold) return {
-      recommended_cut: "Undercut Pompadour",
-      why_it_works: "Thick hair has the natural volume to pull off a pompadour. Shaving the sides tight makes the volume on top look intentional and powerful.",
-      how_to_ask: "I want an undercut — skin fade or 1 guard on the sides, hard disconnection. Leave 3-4 inches on top for a pompadour. Texturize the top.",
-      maintenance: "Sides every 2-3 weeks. Use a medium-hold pomade or clay.",
-      pro_tip: "Ask for point-cutting or texturizing shears on the top — removes bulk and makes thick hair move.",
-      vibe: "Bold",
-      match_keywords: ["thick", "fades", "classic"]
-    };
-    return {
-      recommended_cut: "Classic Taper with Textured Top",
-      why_it_works: "Thick hair needs weight removal as much as length control. A taper keeps the sides tight while point-cutting gives the top movement.",
-      how_to_ask: "I want a classic taper on the sides — 1 or 2 guard at the bottom, blending up. Use texturizing shears on top to remove bulk. Medium length.",
-      maintenance: "Every 3-4 weeks. A matte clay or light pomade helps control volume.",
-      pro_tip: "Never let a barber use thinning shears aggressively on thick hair — it creates frizz. Texturizing shears are the right tool.",
-      vibe: "Classic",
-      match_keywords: ["thick", "tapers", "classic"]
-    };
-  }
-
-  if (isThin) return {
-    recommended_cut: "Textured French Crop",
-    why_it_works: "Fine hair creates the illusion of density when cut short and textured on top. A crop with a textured fringe draws attention forward.",
-    how_to_ask: "I want a textured crop — scissor-cut on top with a short textured fringe, faded sides. Use point-cutting to add texture so it doesn't lie flat.",
-    maintenance: "Every 3 weeks. Use a lightweight volumizing paste, not heavy pomades.",
-    pro_tip: "Shampoo every other day max. Over-washing strips the scalp oils that give fine hair its only natural body.",
-    vibe: "Clean",
-    match_keywords: ["tapers", "fades"]
-  };
-
-  if (isRound) return {
-    recommended_cut: "High Fade with Height on Top",
-    why_it_works: "A high fade tightens the sides which visually slims a round face, while height on top elongates your face shape.",
-    how_to_ask: "I want a high fade — skin or 1 at the bottom, fading up high past the temples. Leave enough length on top to style upward with some height.",
-    maintenance: "Every 2-3 weeks — high fades grow out quickly.",
-    pro_tip: "Avoid cuts that add horizontal volume on the sides — they make a round face look wider.",
-    vibe: "Sharp",
-    match_keywords: ["fades", "tapers"]
-  };
-
-  if (isSquare) return {
-    recommended_cut: "Soft Taper with Textured Top",
-    why_it_works: "A square jaw is a great feature. A soft taper keeps the jaw as the focal point while texture on top adds softness to balance the angles.",
-    how_to_ask: "I want a soft taper on the sides — nothing too aggressive, keep a little weight on the sides. Scissor or clipper the top with texture.",
-    maintenance: "Every 4 weeks. A matte product like clay or paste works well.",
-    pro_tip: "Avoid super tight skin fades with a very square jaw — a 1 or 2 guard at the bottom is usually the sweet spot.",
-    vibe: "Classic",
-    match_keywords: ["tapers", "classic"]
-  };
-
-  if (wantsLow) return {
-    recommended_cut: "Buzz Cut or Short Fade",
-    why_it_works: "The lowest maintenance cut that still looks intentional. A uniform buzz or short fade grows out cleanly and looks good 4-5 weeks later.",
-    how_to_ask: "I want a short, low-maintenance cut. Either a uniform buzz (2 or 3 guard all over) or a skin fade on the sides with a 2 or 3 on top.",
-    maintenance: "Every 4-6 weeks. No product needed — just keep your scalp moisturized.",
-    pro_tip: "Ask your barber to go one guard longer than you think — it always looks shorter than expected once done.",
-    vibe: "Clean",
-    match_keywords: ["fades", "classic", "tapers"]
-  };
-
-  if (wantsPro) return {
-    recommended_cut: "Classic Side Part Taper",
-    why_it_works: "The side part taper is the most universally professional cut. Polished without being boring, works in any environment.",
-    how_to_ask: "I want a classic side part — taper the sides with a 1 or 2 guard blending up, hard part, and scissor cut the top so it can be combed to the side.",
-    maintenance: "Every 3-4 weeks. A light hold pomade or cream for the part.",
-    pro_tip: "Tell your barber which side your hair naturally parts on — forcing it the other way means it'll fight you every morning.",
-    vibe: "Sharp",
-    match_keywords: ["classic", "tapers", "fades"]
-  };
-
-  return {
-    recommended_cut: "Mid Skin Fade with Textured Top",
-    why_it_works: "The mid fade is the most versatile cut in the barbershop. Works on virtually every hair type and face shape. Textured on top it looks modern and fresh.",
-    how_to_ask: "I want a mid skin fade — start the fade around the temple, blend down to skin. Leave 2-3 inches on top and texturize it. Clean up my lineup.",
-    maintenance: "Every 2-3 weeks to keep the fade fresh. A matte clay or paste on top.",
-    pro_tip: "The fastest way to spot a great barber: watch how they blend. The fade should have zero visible lines.",
-    vibe: "Fresh",
-    match_keywords: ["fades", "tapers"]
-  };
+  // SHORT MALE / ALL
+  if (isRetro)    return ["Mod Cut","Flat Top","Pompadour"];
+  if (isEdgy)     return ["Disconnected Undercut","High Fade","Burst Fade"];
+  if (isBold)     return ["High Fade","High Top Fade","Flat Top"];
+  if (isPro)      return ["Taper Fade","Crew Cut","Ivy League"];
+  if (isLowM)     return ["Buzz Cut","Crew Cut","Taper Fade"];
+  if (isClassic)  return ["Taper Fade","Side Part","Crew Cut"];
+  if (isClean)    return ["Skin Fade","French Crop","Shape-Up"];
+  return ["Mid Fade","Textured Crop","Taper Fade"];
 }
 
-const BARBERS = [
-  { id:1, name:"Marcus \"The Sculptor\" Webb", shop:"Precision Cuts Barbershop", neighborhood:"Bethesda, MD", specialties:["fades","tapers","shape-ups","beard sculpting"], hairTypes:["straight","wavy","waves","type 3"], rating:4.9, reviews:312, wait:"~20 min", price:"$$", bookingUrl:"#", platform:"Booksy", tags:["FADE KING","BEARD WORK"], bio:"15 years in the game. Known for surgical fades and crisp lines." },
-  { id:2, name:"Destiny \"D-Loc\" Charles", shop:"The Loc Studio", neighborhood:"Silver Spring, MD", specialties:["locs","loc maintenance","retwist","natural hair"], hairTypes:["locs","coily","4c","natural"], rating:5.0, reviews:178, wait:"By appt only", price:"$$$", bookingUrl:"#", platform:"Squire", tags:["LOC SPECIALIST","NATURAL HAIR"], bio:"Certified loc technician with a deep understanding of hair health." },
-  { id:3, name:"Tony Reyes", shop:"Old School Barbershop", neighborhood:"Rockville, MD", specialties:["classic cuts","pompadour","old school fades","kids cuts"], hairTypes:["straight","wavy","fine","thick"], rating:4.8, reviews:524, wait:"~35 min", price:"$", bookingUrl:"#", platform:"Booksy", tags:["CLASSIC CUTS","KIDS WELCOME"], bio:"Third generation barber. No frills, just clean cuts." },
-  { id:4, name:"Jordan \"JK\" Kim", shop:"Fresh Canvas Studio", neighborhood:"Chevy Chase, MD", specialties:["textured cuts","curly hair","disconnected undercut","color"], hairTypes:["curly","wavy","type 2","type 3","mixed"], rating:4.9, reviews:267, wait:"~15 min", price:"$$$", bookingUrl:"#", platform:"Squire", tags:["CURLY SPECIALIST","COLOR WORK"], bio:"Specializes in textured and curly hair. Every cut is customized to your curl pattern." },
-  { id:5, name:"Big Mike Thompson", shop:"Waves & Fades", neighborhood:"Bethesda, MD", specialties:["waves","360 waves","tapers","fades"], hairTypes:["waves","coily","type 4","4a","4b"], rating:4.9, reviews:441, wait:"~25 min", price:"$$", bookingUrl:"#", platform:"Booksy", tags:["WAVE WHISPERER","360 WAVES"], bio:"If you're trying to get your waves right, this is your guy. Period." },
-  { id:6, name:"Sofia Mendez", shop:"Cortes Studio", neighborhood:"Takoma Park, MD", specialties:["tapers","low fades","thick hair cuts","kids"], hairTypes:["thick","straight","wavy","coarse"], rating:4.8, reviews:389, wait:"~30 min", price:"$$", bookingUrl:"#", platform:"Squire", tags:["THICK HAIR PRO","ALL GENDERS"], bio:"Specializes in thick, coarse hair textures. Bilingual." }
-];
-
-const QUIZ_STEPS = [
-  { id:"hair_type",  question:"What's your hair like?",       sub:"Texture, length, anything goes",  placeholder:"e.g. thick and curly, fine and straight, 4c natural, long hair, locs..." },
-  { id:"face_shape", question:"Describe your face shape",     sub:"A rough idea is totally fine",     placeholder:"e.g. round face, square jaw, long face, oval..." },
-  { id:"style_goal", question:"What vibe are you going for?", sub:"Think lifestyle, not just looks",  placeholder:"e.g. clean and professional, fresh fade, low maintenance, bold..." },
-  { id:"extra",      question:"Anything else to know?",       sub:"Optional but really helps",        placeholder:"e.g. haven't cut in 6 months, job interview next week...", optional:true },
-];
-
+// ─── UI HELPERS ──────────────────────────────────────────────────────────────
 function Lbl({ children, style={} }) {
   return (
-    <div style={{fontFamily:"'DM Sans',sans-serif", fontSize:10, fontWeight:600, letterSpacing:"0.22em", textTransform:"uppercase", color:T.accent, display:"flex", alignItems:"center", gap:10, ...style}}>
-      <span style={{display:"inline-block", width:20, height:1.5, background:T.accent, flexShrink:0}}/>
+    <div style={{fontSize:10,fontWeight:600,letterSpacing:"0.22em",textTransform:"uppercase",color:A,display:"flex",alignItems:"center",gap:10,...style}}>
+      <span style={{display:"inline-block",width:20,height:1.5,background:A,flexShrink:0}}/>
       {children}
     </div>
   );
@@ -283,189 +682,276 @@ function Lbl({ children, style={} }) {
 
 function Stars({ r }) {
   return (
-    <span style={{fontFamily:"'DM Sans',sans-serif", fontSize:12}}>
-      <span style={{color:T.accent}}>{"★".repeat(Math.floor(r))}</span>
-      <span style={{color:T.border}}>{"★".repeat(5-Math.floor(r))}</span>
-      <span style={{color:T.muted, marginLeft:5}}>{r}</span>
+    <span style={{fontSize:12}}>
+      <span style={{color:A}}>{"★".repeat(Math.floor(r))}</span>
+      <span style={{color:BORDER}}>{"★".repeat(5-Math.floor(r))}</span>
+      <span style={{color:MUTED,marginLeft:5}}>{r}</span>
     </span>
   );
 }
 
 function BCard({ b, compact=false }) {
   return (
-    <div className="card" style={{padding:compact?20:28, marginBottom:12}}>
-      <div style={{display:"flex", justifyContent:"space-between", gap:16, flexWrap:"wrap"}}>
+    <div className="card" style={{padding:compact?20:28,marginBottom:12}}>
+      <div style={{display:"flex",justifyContent:"space-between",gap:16,flexWrap:"wrap"}}>
         <div style={{flex:1}}>
-          <div style={{display:"flex", gap:5, flexWrap:"wrap", marginBottom:8}}>
-            {b.tags.map(t => <span key={t} style={{fontFamily:"'DM Sans',sans-serif", fontSize:9, fontWeight:700, letterSpacing:"0.16em", padding:"3px 8px", background:T.accentLight, color:T.accent, border:"1px solid "+T.accentMid}}>{t}</span>)}
+          <div style={{display:"flex",gap:5,flexWrap:"wrap",marginBottom:8}}>
+            {b.tags.map(t=>(
+              <span key={t} style={{fontSize:9,fontWeight:700,letterSpacing:"0.16em",padding:"3px 8px",background:ACCENT_LIGHT,color:A,border:"1px solid "+ACCENT_MID}}>{t}</span>
+            ))}
           </div>
-          <div style={{fontFamily:"'Playfair Display',serif", fontSize:18, fontWeight:700, color:T.ink, marginBottom:2}}>{b.name}</div>
-          <div style={{fontFamily:"'DM Sans',sans-serif", fontSize:13, color:T.muted, fontWeight:300, marginBottom:8}}>{b.shop} · {b.neighborhood}</div>
+          <div style={{fontFamily:"'Playfair Display',serif",fontSize:18,fontWeight:700,color:INK,marginBottom:2}}>{b.name}</div>
+          <div style={{fontSize:13,color:MUTED,fontWeight:300,marginBottom:8}}>{b.shop} · {b.neighborhood}</div>
           <Stars r={b.rating}/>
-          <span style={{fontFamily:"'DM Sans',sans-serif", fontSize:11, color:T.muted, marginLeft:6}}>({b.reviews})</span>
+          <span style={{fontSize:11,color:MUTED,marginLeft:6}}>({b.reviews})</span>
         </div>
         <div style={{textAlign:"right"}}>
-          <div style={{fontFamily:"'Playfair Display',serif", fontSize:22, fontWeight:900, color:T.ink}}>{b.price}</div>
-          <div style={{fontFamily:"'DM Sans',sans-serif", fontSize:11, color:T.muted, marginTop:4}}>{b.wait}</div>
+          <div style={{fontFamily:"'Playfair Display',serif",fontSize:22,fontWeight:900,color:INK}}>{b.price}</div>
+          <div style={{fontSize:11,color:MUTED,marginTop:4}}>{b.wait}</div>
         </div>
       </div>
-      {!compact && <p style={{fontFamily:"'DM Sans',sans-serif", fontSize:13, color:T.muted, lineHeight:1.7, margin:"16px 0", fontWeight:300}}>{b.bio}</p>}
+      {!compact && <p style={{fontSize:13,color:MUTED,lineHeight:1.7,margin:"16px 0",fontWeight:300}}>{b.bio}</p>}
       <div style={{margin:"12px 0 16px"}}>
-        {(compact?b.specialties.slice(0,4):b.specialties).map(s => <span key={s} className="chip" style={{cursor:"default"}}>{s}</span>)}
+        {b.specialties.map(s=><span key={s} className="chip" style={{cursor:"default"}}>{s}</span>)}
       </div>
-      <a href={b.bookingUrl} className="btn bp" style={{padding:"10px 22px", fontSize:11, textDecoration:"none", display:"inline-block"}}>Book on {b.platform} →</a>
+      <a href="#" className="btn bp" style={{padding:"10px 22px",fontSize:11,textDecoration:"none",display:"inline-block"}}>
+        Book on {b.platform} →
+      </a>
     </div>
   );
 }
 
+// ─── HOME ────────────────────────────────────────────────────────────────────
 function Home({ nav }) {
+  const cuts = Object.keys(CUTS);
+  const featured = ["Skin Fade","Wolf Cut","360 Waves","Modern Mullet","Loc Retwist","Pixie Cut","High Top Fade","Textured Crop"];
   return (
     <div>
-      <div style={{minHeight:"90vh", display:"flex", alignItems:"center", padding:"40px 24px", position:"relative", overflow:"hidden"}}>
-        <div style={{position:"absolute", inset:0, pointerEvents:"none", backgroundImage:"repeating-linear-gradient(transparent,transparent 47px,"+T.border+" 47px,"+T.border+" 48px)", opacity:0.5}}/>
-        <div style={{position:"absolute", right:-20, top:"50%", transform:"translateY(-50%)", fontFamily:"'Playfair Display',serif", fontSize:"clamp(160px,28vw,320px)", fontWeight:900, fontStyle:"italic", color:"transparent", WebkitTextStroke:"1px "+T.border, lineHeight:1, pointerEvents:"none", userSelect:"none", whiteSpace:"nowrap"}}>CUT</div>
-        <div style={{position:"relative", maxWidth:680, zIndex:1}}>
-          <div className="fu" style={{display:"flex", alignItems:"center", gap:16, marginBottom:28}}>
+      {/* Hero */}
+      <div style={{minHeight:"92vh",display:"flex",alignItems:"center",padding:"40px 24px",position:"relative",overflow:"hidden"}}>
+        <div style={{position:"absolute",inset:0,pointerEvents:"none",backgroundImage:"repeating-linear-gradient(transparent,transparent 47px,"+BORDER+" 47px,"+BORDER+" 48px)",opacity:0.5}}/>
+        <div style={{position:"absolute",right:-20,top:"50%",transform:"translateY(-50%)",fontFamily:"'Playfair Display',serif",fontSize:"clamp(160px,28vw,320px)",fontWeight:900,fontStyle:"italic",color:"transparent",WebkitTextStroke:"1px "+BORDER,lineHeight:1,pointerEvents:"none",userSelect:"none",whiteSpace:"nowrap"}}>CUT</div>
+        <div style={{position:"relative",maxWidth:680,zIndex:1}}>
+          <div className="fu" style={{display:"flex",alignItems:"center",gap:16,marginBottom:28}}>
             <div className="pole" style={{height:52}}/>
             <Lbl>AI-Powered Barber Intelligence</Lbl>
           </div>
-          <h1 className="fu2" style={{fontFamily:"'Playfair Display',serif", fontSize:"clamp(64px,14vw,128px)", fontWeight:900, fontStyle:"italic", lineHeight:0.9, color:T.ink, marginBottom:32}}>
-            Lined<br/><span style={{color:T.accent}}>Up.</span>
+          <h1 className="fu1" style={{fontFamily:"'Playfair Display',serif",fontSize:"clamp(64px,14vw,128px)",fontWeight:900,fontStyle:"italic",lineHeight:0.9,color:INK,marginBottom:32}}>
+            Lined<br/><span style={{color:A}}>Up.</span>
           </h1>
-          <p className="fu3" style={{fontFamily:"'DM Sans',sans-serif", fontSize:18, lineHeight:1.75, color:T.muted, maxWidth:400, marginBottom:44, fontWeight:300}}>
+          <p className="fu2" style={{fontSize:18,lineHeight:1.75,color:MUTED,maxWidth:420,marginBottom:16,fontWeight:300}}>
             Find your perfect cut. Match with the right barber. Walk in knowing exactly what to say.
           </p>
-          <div className="fu3" style={{display:"flex", gap:12, flexWrap:"wrap"}}>
-            <button className="btn bp" onClick={()=>nav("quiz")} style={{padding:"15px 38px", fontSize:12}}>Find My Cut →</button>
-            <button className="btn bo" onClick={()=>nav("directory")} style={{padding:"15px 38px", fontSize:12}}>Browse Barbers</button>
+          <p className="fu2" style={{fontSize:13,color:MUTED,marginBottom:40,fontWeight:300}}>
+            {cuts.length}+ cuts for every hair type, texture, and gender.
+          </p>
+          <div className="fu3" style={{display:"flex",gap:12,flexWrap:"wrap"}}>
+            <button className="btn bp" onClick={()=>nav("quiz")} style={{padding:"15px 38px",fontSize:12}}>Find My Cut →</button>
+            <button className="btn bo" onClick={()=>nav("directory")} style={{padding:"15px 38px",fontSize:12}}>Browse Barbers</button>
           </div>
         </div>
       </div>
 
-      <div style={{background:T.ink, padding:"80px 24px"}}>
-        <div style={{maxWidth:680, margin:"0 auto"}}>
-          <Lbl style={{color:T.accent, marginBottom:16}}/>
-          <h2 style={{fontFamily:"'Playfair Display',serif", fontStyle:"italic", fontSize:"clamp(36px,7vw,56px)", color:"#F5F0E8", lineHeight:1, marginBottom:52}}>Three steps.<br/>Zero guesswork.</h2>
+      {/* Cut gallery preview */}
+      <div style={{padding:"64px 24px",borderTop:"1px solid "+BORDER}}>
+        <div style={{maxWidth:900,margin:"0 auto"}}>
+          <Lbl style={{marginBottom:12}}>Every Cut, Every Texture</Lbl>
+          <h2 style={{fontFamily:"'Playfair Display',serif",fontStyle:"italic",fontSize:"clamp(36px,7vw,52px)",color:INK,lineHeight:1,marginBottom:40}}>
+            {cuts.length}+ cuts.<br/>Zero guesswork.
+          </h2>
+          <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(180px,1fr))",gap:10,marginBottom:36}}>
+            {featured.map(name=>{
+              const c = CUTS[name];
+              return (
+                <div key={name} onClick={()=>nav("quiz")} className="card" style={{padding:"16px 18px",cursor:"pointer"}}>
+                  <div style={{fontSize:9,fontWeight:700,letterSpacing:"0.14em",color:A,marginBottom:6,textTransform:"uppercase"}}>{c.vibe}</div>
+                  <div style={{fontFamily:"'Playfair Display',serif",fontSize:15,fontWeight:700,color:INK,lineHeight:1.2,marginBottom:8}}>{name}</div>
+                  <div style={{display:"flex",flexWrap:"wrap",gap:3}}>
+                    {c.gender.map(g=><span key={g} style={{fontSize:9,padding:"2px 6px",border:"1px solid "+BORDER,color:MUTED,textTransform:"uppercase",letterSpacing:"0.1em"}}>{g}</span>)}
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+          <button className="btn bo" onClick={()=>nav("cuts")} style={{padding:"14px 32px",fontSize:11}}>Browse All {cuts.length} Cuts →</button>
+        </div>
+      </div>
+
+      {/* How it works */}
+      <div style={{background:INK,padding:"80px 24px"}}>
+        <div style={{maxWidth:680,margin:"0 auto"}}>
+          <Lbl style={{color:A,marginBottom:16}}/>
+          <h2 style={{fontFamily:"'Playfair Display',serif",fontStyle:"italic",fontSize:"clamp(36px,7vw,52px)",color:BG,lineHeight:1,marginBottom:52}}>
+            Three steps.<br/>Zero guesswork.
+          </h2>
           {[
-            {n:"01", t:"Describe Your Hair", b:"Tell us your hair type, face shape, and the style you want. Under two minutes."},
-            {n:"02", t:"Get Your Recommendation", b:"Get the exact cut name, why it works for you, and word-for-word what to say in the chair."},
-            {n:"03", t:"Match With a Specialist", b:"We point you to the right barber in your city for that specific style."},
-          ].map((s,i) => (
-            <div key={i} style={{display:"flex", gap:32, paddingBottom:40, marginBottom:40, borderBottom:i<2?"1px solid rgba(245,240,232,0.08)":"none"}}>
-              <div style={{fontFamily:"'Playfair Display',serif", fontStyle:"italic", fontSize:56, color:T.accent, lineHeight:1, flexShrink:0, width:64, opacity:0.65}}>{s.n}</div>
+            {n:"01",t:"Click, Don't Type",b:"No long forms. Pick your hair type, length, and vibe in under a minute."},
+            {n:"02",t:"Get Your Recommendation",b:"The exact cut name, why it works for you, and word-for-word what to say in the chair."},
+            {n:"03",t:"Match With a Specialist",b:"We point you to the right barber in Bethesda and DC for your specific style."},
+          ].map((s,i)=>(
+            <div key={i} style={{display:"flex",gap:32,paddingBottom:40,marginBottom:40,borderBottom:i<2?"1px solid rgba(245,240,232,0.08)":"none"}}>
+              <div style={{fontFamily:"'Playfair Display',serif",fontStyle:"italic",fontSize:56,color:A,lineHeight:1,flexShrink:0,width:64,opacity:0.65}}>{s.n}</div>
               <div>
-                <div style={{fontFamily:"'DM Sans',sans-serif", fontWeight:600, fontSize:17, color:"#F5F0E8", marginBottom:8}}>{s.t}</div>
-                <div style={{fontFamily:"'DM Sans',sans-serif", fontWeight:300, fontSize:14, color:"rgba(245,240,232,0.5)", lineHeight:1.7}}>{s.b}</div>
+                <div style={{fontWeight:600,fontSize:17,color:BG,marginBottom:8}}>{s.t}</div>
+                <div style={{fontWeight:300,fontSize:14,color:"rgba(245,240,232,0.5)",lineHeight:1.7}}>{s.b}</div>
               </div>
             </div>
           ))}
-          <button className="btn bp" onClick={()=>nav("quiz")} style={{padding:"15px 38px", fontSize:12, marginTop:8}}>Start The Quiz →</button>
-        </div>
-      </div>
-
-      <div style={{background:T.accentLight, borderTop:"1px solid "+T.accentMid, borderBottom:"1px solid "+T.accentMid, padding:"48px 24px"}}>
-        <div style={{maxWidth:680, margin:"0 auto", display:"flex", gap:40, alignItems:"center", flexWrap:"wrap"}}>
-          <div style={{flex:1, minWidth:240}}>
-            <Lbl style={{marginBottom:12}}/>
-            <h3 style={{fontFamily:"'Playfair Display',serif", fontStyle:"italic", fontSize:"clamp(24px,5vw,36px)", color:T.ink, lineHeight:1.15, marginBottom:12}}>Integrate with your booking system</h3>
-            <p style={{fontFamily:"'DM Sans',sans-serif", fontWeight:300, fontSize:14, color:T.muted, lineHeight:1.7}}>Clients complete the style quiz before arrival. You receive a full brief before they sit down. Works with Booksy and Squire.</p>
-          </div>
-          <div style={{display:"flex", flexDirection:"column", gap:10}}>
-            {["Booksy","Squire"].map(p => <div key={p} style={{padding:"12px 28px", border:"1.5px solid "+T.accentMid, fontFamily:"'DM Sans',sans-serif", fontSize:12, fontWeight:600, letterSpacing:"0.12em", color:T.accent, background:"#fff"}}>{p}</div>)}
-          </div>
+          <button className="btn bp" onClick={()=>nav("quiz")} style={{padding:"15px 38px",fontSize:12,marginTop:8}}>Start The Quiz →</button>
         </div>
       </div>
     </div>
   );
 }
 
+// ─── QUIZ ────────────────────────────────────────────────────────────────────
 function Quiz({ nav, setResult }) {
   const [step, setStep]       = useState(0);
   const [answers, setAnswers] = useState({});
-  const [input, setInput]     = useState("");
+  const [selected, setSelected] = useState([]);
+  const [text, setText]       = useState("");
   const [loading, setLoading] = useState(false);
-  const current = QUIZ_STEPS[step];
+  const current = STEPS[step];
+
+  const toggle = (val) => {
+    if (current.type === "single") {
+      setSelected([val]);
+    } else {
+      if (selected.includes(val)) setSelected(selected.filter(v=>v!==val));
+      else if (selected.length < 3) setSelected([...selected, val]);
+    }
+  };
 
   const advance = async () => {
-    const val = input.trim();
-    if (!val && !current.optional) return;
-    const updated = { ...answers, [current.id]: val };
+    const val = current.type === "text" ? text.trim() : (current.type === "single" ? selected[0] : selected);
+    if (!val && !current.optional && current.type !== "multi") return;
+    if (current.type === "multi" && selected.length === 0 && !current.optional) return;
+
+    const updated = { ...answers, [current.id]: val || (current.type === "multi" ? [] : "") };
     setAnswers(updated);
-    setInput("");
-    const isLast = step === QUIZ_STEPS.length - 1;
-    if (!isLast) { setStep(s => s+1); return; }
+    setSelected([]);
+    setText("");
+
+    const isLast = step === STEPS.length - 1;
+    if (!isLast) { setStep(s=>s+1); return; }
+
     setLoading(true);
-    await new Promise(r => setTimeout(r, 1200));
-    const parsed = generateCutResult(updated);
-    setResult({ result: parsed, answers: updated });
+    await new Promise(r=>setTimeout(r, 1200));
+    const cuts = recommend(updated);
+    setResult({ cuts, answers: updated });
     nav("result");
   };
 
   const back = () => {
-    const prev = QUIZ_STEPS[step-1];
-    setInput(answers[prev.id] || "");
-    setStep(s => s-1);
+    const prev = STEPS[step-1];
+    const prevVal = answers[prev.id];
+    if (prev.type === "single") setSelected(prevVal ? [prevVal] : []);
+    else if (prev.type === "multi") setSelected(prevVal || []);
+    else setText(prevVal || "");
+    setStep(s=>s-1);
   };
 
   if (loading) return (
-    <div style={{minHeight:"80vh", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center", gap:20}}>
-      <div style={{fontSize:52, animation:"spinCw 1.4s linear infinite", display:"inline-block"}}>✂</div>
-      <p style={{fontFamily:"'DM Sans',sans-serif", fontSize:11, letterSpacing:"0.22em", textTransform:"uppercase", color:T.muted}}>Reading your hair…</p>
+    <div style={{minHeight:"80vh",display:"flex",flexDirection:"column",alignItems:"center",justifyContent:"center",gap:20}}>
+      <div style={{fontSize:52,animation:"spin 1.4s linear infinite",display:"inline-block"}}>✂</div>
+      <p style={{fontSize:11,letterSpacing:"0.22em",textTransform:"uppercase",color:MUTED}}>Finding your cut…</p>
     </div>
   );
 
   return (
-    <div className="fu" style={{maxWidth:580, margin:"0 auto", padding:"52px 24px 80px"}}>
-      <div style={{display:"flex", gap:6, marginBottom:52}}>
-        {QUIZ_STEPS.map((_,i) => <div key={i} style={{flex:1, height:2, background:i<=step?T.accent:T.border, transition:"background 0.3s"}}/>)}
+    <div className="fu" style={{maxWidth:560,margin:"0 auto",padding:"52px 24px 80px"}}>
+      <div style={{display:"flex",gap:6,marginBottom:52}}>
+        {STEPS.map((_,i)=>(
+          <div key={i} style={{flex:1,height:2,background:i<=step?A:BORDER,transition:"background 0.3s"}}/>
+        ))}
       </div>
-      <Lbl style={{marginBottom:14}}>Step {step+1} of {QUIZ_STEPS.length}{current.optional?" — optional":""}</Lbl>
-      <h2 style={{fontFamily:"'Playfair Display',serif", fontStyle:"italic", fontSize:"clamp(32px,7vw,52px)", color:T.ink, lineHeight:1, marginBottom:8}}>{current.question}</h2>
-      <p style={{fontFamily:"'DM Sans',sans-serif", fontSize:13, color:T.muted, marginBottom:28, fontWeight:300}}>{current.sub}</p>
-      <textarea key={step} rows={4} value={input} autoFocus
-        onChange={e=>setInput(e.target.value)}
-        onKeyDown={e=>{ if(e.key==="Enter"&&!e.shiftKey){ e.preventDefault(); advance(); }}}
-        placeholder={current.placeholder}
-        style={{resize:"none", borderColor:input.trim()?T.accent:T.border}}
-      />
-      <div style={{display:"flex", justifyContent:"space-between", marginTop:24}}>
-        {step>0 ? <button className="btn bo" onClick={back} style={{padding:"12px 24px", fontSize:11}}>← Back</button> : <div/>}
+      <Lbl style={{marginBottom:14}}>Step {step+1} of {STEPS.length}{current.optional?" — optional":""}</Lbl>
+      <h2 style={{fontFamily:"'Playfair Display',serif",fontStyle:"italic",fontSize:"clamp(30px,7vw,48px)",color:INK,lineHeight:1,marginBottom:current.hint?8:28}}>
+        {current.q}
+      </h2>
+      {current.hint && <p style={{fontSize:12,color:MUTED,marginBottom:20,fontWeight:300}}>{current.hint}</p>}
+
+      {current.type === "text" ? (
+        <textarea rows={4} value={text} autoFocus
+          onChange={e=>setText(e.target.value)}
+          onKeyDown={e=>{ if(e.key==="Enter"&&!e.shiftKey){e.preventDefault();advance();}}}
+          placeholder={current.placeholder}
+          style={{resize:"none",borderColor:text.trim()?A:BORDER}}
+        />
+      ) : (
+        <div style={{display:"flex",flexDirection:"column",gap:8}}>
+          {current.opts.map(o=>(
+            <button key={o.val} className={"opt"+(selected.includes(o.val)?" sel":"")} onClick={()=>toggle(o.val)}>
+              <span style={{fontSize:18,width:24,textAlign:"center",flexShrink:0}}>{o.icon}</span>
+              <span style={{flex:1}}>{o.label}</span>
+              {selected.includes(o.val) && <span style={{color:A,fontSize:16}}>✓</span>}
+            </button>
+          ))}
+        </div>
+      )}
+
+      <div style={{display:"flex",justifyContent:"space-between",marginTop:28}}>
+        {step>0
+          ? <button className="btn bo" onClick={back} style={{padding:"12px 24px",fontSize:11}}>← Back</button>
+          : <div/>
+        }
         <button className="btn bp" onClick={advance}
-          style={{padding:"13px 34px", fontSize:11, opacity:(!input.trim()&&!current.optional)?0.35:1, cursor:(!input.trim()&&!current.optional)?"default":"pointer"}}>
-          {step===QUIZ_STEPS.length-1?"Get My Cut →":"Next →"}
+          style={{padding:"13px 34px",fontSize:11,
+            opacity:(current.type==="text"&&!text.trim()&&!current.optional)||(current.type!=="text"&&selected.length===0&&!current.optional)?0.35:1}}>
+          {step===STEPS.length-1?"Get My Cut →":"Next →"}
         </button>
       </div>
     </div>
   );
 }
 
+// ─── RESULT ──────────────────────────────────────────────────────────────────
 function Result({ data, nav }) {
-  const { result:r } = data;
-  const kw = (r.match_keywords||[]).map(k=>k.toLowerCase());
-  const matched = BARBERS.filter(b=>kw.some(k=>b.specialties.some(s=>s.toLowerCase().includes(k))||b.hairTypes.some(h=>h.toLowerCase().includes(k))));
-  const display = matched.length>0 ? matched.slice(0,2) : BARBERS.slice(0,2);
+  const { cuts, answers } = data;
+  const [activeIdx, setActiveIdx] = useState(0);
+  const cutName = cuts[activeIdx];
+  const c = CUTS[cutName] || CUTS["Mid Fade"];
+
+  const matchedBarbers = BARBERS.filter(b=>
+    c.tags.some(t=>b.specialties.some(s=>s.toLowerCase().includes(t.toLowerCase())))
+  ).slice(0,2);
+  const displayBarbers = matchedBarbers.length > 0 ? matchedBarbers : BARBERS.slice(0,2);
 
   return (
-    <div className="fu" style={{maxWidth:660, margin:"0 auto", padding:"52px 24px 80px"}}>
+    <div className="fu" style={{maxWidth:660,margin:"0 auto",padding:"52px 24px 80px"}}>
       <Lbl style={{marginBottom:20}}>Your Result</Lbl>
-      <div style={{borderLeft:"3px solid "+T.accent, paddingLeft:28, marginBottom:44}}>
-        <div style={{fontFamily:"'DM Sans',sans-serif", fontSize:10, letterSpacing:"0.2em", textTransform:"uppercase", color:T.muted, marginBottom:8}}>Recommended Cut</div>
-        <h1 style={{fontFamily:"'Playfair Display',serif", fontStyle:"italic", fontSize:"clamp(44px,9vw,72px)", fontWeight:900, color:T.ink, lineHeight:0.92, marginBottom:16}}>{r.recommended_cut}</h1>
-        <span style={{fontFamily:"'DM Sans',sans-serif", fontSize:10, fontWeight:700, letterSpacing:"0.18em", textTransform:"uppercase", background:T.accent, color:"#fff", padding:"5px 14px"}}>{r.vibe}</span>
+
+      {cuts.length > 1 && (
+        <div style={{marginBottom:28}}>
+          <p style={{fontSize:11,color:MUTED,letterSpacing:"0.12em",textTransform:"uppercase",marginBottom:12}}>We found {cuts.length} cuts for you:</p>
+          <div style={{display:"flex",gap:8,flexWrap:"wrap"}}>
+            {cuts.map((name,i)=>(
+              <button key={name} onClick={()=>setActiveIdx(i)} className="btn" style={{padding:"8px 16px",fontSize:10,background:i===activeIdx?A:"#fff",color:i===activeIdx?"#fff":INK,border:"1.5px solid "+(i===activeIdx?A:BORDER)}}>
+                {name}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      <div style={{borderLeft:"3px solid "+A,paddingLeft:28,marginBottom:44}}>
+        <div style={{fontSize:10,letterSpacing:"0.2em",textTransform:"uppercase",color:MUTED,marginBottom:8}}>Recommended Cut</div>
+        <h1 style={{fontFamily:"'Playfair Display',serif",fontStyle:"italic",fontSize:"clamp(40px,9vw,68px)",fontWeight:900,color:INK,lineHeight:0.92,marginBottom:16}}>{cutName}</h1>
+        <span style={{fontSize:10,fontWeight:700,letterSpacing:"0.18em",textTransform:"uppercase",background:A,color:"#fff",padding:"5px 14px"}}>{c.vibe}</span>
       </div>
 
       {[
-        {icon:"◈", label:"Why It Works For You",     body:r.why_it_works},
-        {icon:"◎", label:"What To Say In The Chair", body:r.how_to_ask, hi:true},
-        {icon:"⟳", label:"Maintenance",              body:r.maintenance},
-        {icon:"✦", label:"Pro Tip",                  body:r.pro_tip},
-      ].map((c,i) => (
-        <div key={i} style={{background:c.hi?T.accentLight:T.surface, border:"1px solid "+(c.hi?T.accentMid:T.border), padding:"22px 24px", marginBottom:10}}>
-          <div style={{display:"flex", gap:16}}>
-            <span style={{color:T.accent, fontSize:18, lineHeight:1, flexShrink:0}}>{c.icon}</span>
+        {icon:"◈",label:"Why It Works For You",  body:c.why,   hi:false},
+        {icon:"◎",label:"What To Say In The Chair",body:c.ask, hi:true},
+        {icon:"⟳",label:"Maintenance",            body:c.maintenance,hi:false},
+        {icon:"✦",label:"Pro Tip",                body:c.tip,  hi:false},
+      ].map((row,i)=>(
+        <div key={i} style={{background:row.hi?ACCENT_LIGHT:"#fff",border:"1px solid "+(row.hi?ACCENT_MID:BORDER),padding:"22px 24px",marginBottom:10}}>
+          <div style={{display:"flex",gap:16}}>
+            <span style={{color:A,fontSize:18,lineHeight:1,flexShrink:0}}>{row.icon}</span>
             <div>
-              <div style={{fontFamily:"'DM Sans',sans-serif", fontSize:10, letterSpacing:"0.18em", textTransform:"uppercase", color:T.muted, fontWeight:600, marginBottom:7}}>{c.label}</div>
-              <p style={{fontFamily:"'DM Sans',sans-serif", margin:0, fontSize:14, lineHeight:1.75, color:c.hi?T.ink:T.muted, fontStyle:c.hi?"italic":"normal", fontWeight:c.hi?500:300}}>{c.body}</p>
+              <div style={{fontSize:10,letterSpacing:"0.18em",textTransform:"uppercase",color:MUTED,fontWeight:600,marginBottom:7}}>{row.label}</div>
+              <p style={{margin:0,fontSize:14,lineHeight:1.75,color:row.hi?INK:MUTED,fontStyle:row.hi?"italic":"normal",fontWeight:row.hi?500:300}}>{row.body}</p>
             </div>
           </div>
         </div>
@@ -473,187 +959,261 @@ function Result({ data, nav }) {
 
       <div style={{marginTop:52}}>
         <Lbl style={{marginBottom:12}}>Matched Barbers</Lbl>
-        <h2 style={{fontFamily:"'Playfair Display',serif", fontStyle:"italic", fontSize:"clamp(28px,6vw,40px)", color:T.ink, lineHeight:1, marginBottom:24}}>Who can do this in your city</h2>
-        {display.map(b=><BCard key={b.id} b={b} compact/>)}
-        <button className="btn bo" onClick={()=>nav("directory")} style={{width:"100%", padding:14, fontSize:11, marginTop:8}}>See Full Directory →</button>
+        <h2 style={{fontFamily:"'Playfair Display',serif",fontStyle:"italic",fontSize:"clamp(28px,6vw,40px)",color:INK,lineHeight:1,marginBottom:24}}>
+          Who can do this in your city
+        </h2>
+        {displayBarbers.map(b=><BCard key={b.id} b={b} compact/>)}
+        <button className="btn bo" onClick={()=>nav("directory")} style={{width:"100%",padding:14,fontSize:11,marginTop:8}}>See Full Directory →</button>
       </div>
 
-      <div style={{display:"flex", gap:12, marginTop:44}}>
-        <button className="btn bo" onClick={()=>nav("quiz")} style={{flex:1, padding:15, fontSize:11}}>Start Over ↺</button>
-        <button className="btn bp" onClick={()=>nav("booking")} style={{flex:1, padding:15, fontSize:11}}>Book Now →</button>
+      <div style={{display:"flex",gap:12,marginTop:44}}>
+        <button className="btn bo" onClick={()=>nav("quiz")} style={{flex:1,padding:15,fontSize:11}}>Start Over ↺</button>
+        <button className="btn bp" onClick={()=>nav("booking")} style={{flex:1,padding:15,fontSize:11}}>Book Now →</button>
       </div>
     </div>
   );
 }
 
+// ─── ALL CUTS BROWSER ────────────────────────────────────────────────────────
+function AllCuts({ nav }) {
+  const [filter, setFilter] = useState("all");
+  const [vibeFilter, setVibeFilter] = useState(null);
+  const categories = ["all","male","female","all genders"];
+  const vibes = [...new Set(Object.values(CUTS).map(c=>c.vibe))];
+  const entries = Object.entries(CUTS).filter(([,c])=>{
+    const genderOk = filter==="all" || c.gender.includes(filter) || (filter==="all genders" && c.gender.includes("all"));
+    const vibeOk   = !vibeFilter || c.vibe === vibeFilter;
+    return genderOk && vibeOk;
+  });
+
+  return (
+    <div className="fu" style={{maxWidth:900,margin:"0 auto",padding:"52px 24px 80px"}}>
+      <Lbl style={{marginBottom:16}}>Cut Library</Lbl>
+      <h1 style={{fontFamily:"'Playfair Display',serif",fontStyle:"italic",fontSize:"clamp(44px,9vw,68px)",fontWeight:900,color:INK,lineHeight:0.92,marginBottom:12}}>
+        Every cut.<br/><span style={{color:A}}>Find yours.</span>
+      </h1>
+      <p style={{fontSize:15,color:MUTED,fontWeight:300,marginBottom:36}}>{Object.keys(CUTS).length} cuts — male, female, and all genders.</p>
+
+      <div style={{marginBottom:12,display:"flex",flexWrap:"wrap",gap:6}}>
+        <span style={{fontSize:10,color:MUTED,letterSpacing:"0.15em",textTransform:"uppercase",alignSelf:"center",marginRight:4}}>Gender:</span>
+        {["all","male","female"].map(g=>(
+          <span key={g} className={"chip"+(filter===g?" on":"")} onClick={()=>setFilter(g)}>{g}</span>
+        ))}
+      </div>
+      <div style={{marginBottom:36,display:"flex",flexWrap:"wrap",gap:6}}>
+        <span style={{fontSize:10,color:MUTED,letterSpacing:"0.15em",textTransform:"uppercase",alignSelf:"center",marginRight:4}}>Vibe:</span>
+        <span className={"chip"+(!vibeFilter?" on":"")} onClick={()=>setVibeFilter(null)}>All</span>
+        {vibes.map(v=>(
+          <span key={v} className={"chip"+(vibeFilter===v?" on":"")} onClick={()=>setVibeFilter(v===vibeFilter?null:v)}>{v}</span>
+        ))}
+      </div>
+
+      <div style={{display:"grid",gridTemplateColumns:"repeat(auto-fill,minmax(240px,1fr))",gap:12}}>
+        {entries.map(([name, c])=>(
+          <div key={name} className="card" style={{padding:"20px 22px"}}>
+            <div style={{display:"flex",justifyContent:"space-between",alignItems:"flex-start",marginBottom:8}}>
+              <span style={{fontSize:9,fontWeight:700,letterSpacing:"0.14em",color:A,textTransform:"uppercase"}}>{c.vibe}</span>
+              <div style={{display:"flex",gap:3}}>
+                {c.gender.map(g=><span key={g} style={{fontSize:8,padding:"2px 5px",border:"1px solid "+BORDER,color:MUTED,textTransform:"uppercase"}}>{g}</span>)}
+              </div>
+            </div>
+            <div style={{fontFamily:"'Playfair Display',serif",fontSize:16,fontWeight:700,color:INK,lineHeight:1.2,marginBottom:8}}>{name}</div>
+            <p style={{fontSize:12,color:MUTED,lineHeight:1.6,fontWeight:300,marginBottom:12}}>{c.why.slice(0,80)}…</p>
+            <button className="btn bp" onClick={()=>nav("quiz")} style={{padding:"8px 16px",fontSize:9,width:"100%"}}>Get This Cut →</button>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
+}
+
+// ─── DIRECTORY ───────────────────────────────────────────────────────────────
 function Directory({ nav }) {
   const allSpecs = [...new Set(BARBERS.flatMap(b=>b.specialties))];
   const [active, setActive] = useState(null);
   const filtered = active ? BARBERS.filter(b=>b.specialties.includes(active)) : BARBERS;
   return (
-    <div className="fu" style={{maxWidth:700, margin:"0 auto", padding:"52px 24px 80px"}}>
+    <div className="fu" style={{maxWidth:700,margin:"0 auto",padding:"52px 24px 80px"}}>
       <Lbl style={{marginBottom:16}}>Barber Directory</Lbl>
-      <h1 style={{fontFamily:"'Playfair Display',serif", fontStyle:"italic", fontSize:"clamp(44px,9vw,68px)", fontWeight:900, color:T.ink, lineHeight:0.92, marginBottom:12}}>Find your<br/><span style={{color:T.accent}}>specialist.</span></h1>
-      <p style={{fontFamily:"'DM Sans',sans-serif", fontWeight:300, fontSize:15, color:T.muted, marginBottom:36}}>Every barber curated and tagged by what they actually do best.</p>
-      <div style={{marginBottom:32, display:"flex", flexWrap:"wrap", alignItems:"center", gap:4}}>
-        <span style={{fontFamily:"'DM Sans',sans-serif", fontSize:10, color:T.muted, letterSpacing:"0.15em", textTransform:"uppercase", marginRight:8}}>Filter:</span>
+      <h1 style={{fontFamily:"'Playfair Display',serif",fontStyle:"italic",fontSize:"clamp(44px,9vw,68px)",fontWeight:900,color:INK,lineHeight:0.92,marginBottom:12}}>
+        Find your<br/><span style={{color:A}}>specialist.</span>
+      </h1>
+      <p style={{fontWeight:300,fontSize:15,color:MUTED,marginBottom:36}}>Every barber curated and tagged by what they actually do best.</p>
+      <div style={{marginBottom:32,display:"flex",flexWrap:"wrap",alignItems:"center",gap:4}}>
+        <span style={{fontSize:10,color:MUTED,letterSpacing:"0.15em",textTransform:"uppercase",marginRight:8}}>Filter:</span>
         <span className={"chip"+(active===null?" on":"")} onClick={()=>setActive(null)}>All</span>
-        {allSpecs.slice(0,12).map(s=><span key={s} className={"chip"+(active===s?" on":"")} onClick={()=>setActive(s===active?null:s)}>{s}</span>)}
+        {allSpecs.slice(0,10).map(s=>(
+          <span key={s} className={"chip"+(active===s?" on":"")} onClick={()=>setActive(s===active?null:s)}>{s}</span>
+        ))}
       </div>
       {filtered.map(b=><BCard key={b.id} b={b}/>)}
-      <div style={{background:T.accentLight, border:"1px solid "+T.accentMid, padding:32, textAlign:"center", marginTop:48}}>
-        <p style={{fontFamily:"'DM Sans',sans-serif", fontSize:14, color:T.muted, marginBottom:16, fontWeight:300}}>Not sure which specialist is right for you?</p>
-        <button className="btn bp" onClick={()=>nav("quiz")} style={{padding:"14px 36px", fontSize:11}}>Take The Style Quiz →</button>
+      <div style={{background:ACCENT_LIGHT,border:"1px solid "+ACCENT_MID,padding:32,textAlign:"center",marginTop:48}}>
+        <p style={{fontSize:14,color:MUTED,marginBottom:16,fontWeight:300}}>Not sure which specialist is right for you?</p>
+        <button className="btn bp" onClick={()=>nav("quiz")} style={{padding:"14px 36px",fontSize:11}}>Take The Style Quiz →</button>
       </div>
     </div>
   );
 }
 
+// ─── BOOKING ─────────────────────────────────────────────────────────────────
 function Booking({ nav }) {
   const [barber, setBarber] = useState(null);
-  const [brief, setBrief]   = useState({});
-  const [form, setForm]     = useState({name:"", phone:"", date:"", time:""});
+  const [form, setForm]     = useState({name:"",phone:"",date:"",time:""});
   const [screen, setScreen] = useState("pick");
   const TIMES = ["9:00 AM","10:00 AM","11:00 AM","12:00 PM","1:00 PM","2:00 PM","3:00 PM","4:00 PM","5:00 PM"];
 
   if (screen==="pick") return (
-    <div className="fu" style={{maxWidth:700, margin:"0 auto", padding:"52px 24px 80px"}}>
-      <Lbl style={{marginBottom:16}}>Book An Appointment</Lbl>
-      <h1 style={{fontFamily:"'Playfair Display',serif", fontStyle:"italic", fontSize:"clamp(40px,9vw,60px)", fontWeight:900, color:T.ink, lineHeight:0.92, marginBottom:32}}>Choose your<br/><span style={{color:T.accent}}>barber.</span></h1>
+    <div className="fu" style={{maxWidth:700,margin:"0 auto",padding:"52px 24px 80px"}}>
+      <Lbl style={{marginBottom:16}}>Book</Lbl>
+      <h1 style={{fontFamily:"'Playfair Display',serif",fontStyle:"italic",fontSize:"clamp(40px,9vw,60px)",fontWeight:900,color:INK,lineHeight:0.92,marginBottom:32}}>
+        Choose your<br/><span style={{color:A}}>barber.</span>
+      </h1>
       {BARBERS.map(b=>(
-        <div key={b.id} className="card" onClick={()=>{setBarber(b);setScreen("brief");}}
-          style={{padding:"18px 22px", marginBottom:10, cursor:"pointer", display:"flex", justifyContent:"space-between", alignItems:"center", gap:16}}>
+        <div key={b.id} className="card" onClick={()=>{setBarber(b);setScreen("confirm");}} style={{padding:"18px 22px",marginBottom:10,cursor:"pointer",display:"flex",justifyContent:"space-between",alignItems:"center",gap:16}}>
           <div>
-            <div style={{fontFamily:"'Playfair Display',serif", fontSize:16, fontWeight:700, color:T.ink, marginBottom:2}}>{b.name}</div>
-            <div style={{fontFamily:"'DM Sans',sans-serif", fontSize:12, color:T.muted, fontWeight:300}}>{b.shop} · {b.neighborhood}</div>
-            <div style={{marginTop:6}}>{b.tags.map(t=><span key={t} className="chip" style={{fontSize:9, cursor:"default"}}>{t}</span>)}</div>
+            <div style={{fontFamily:"'Playfair Display',serif",fontSize:16,fontWeight:700,color:INK,marginBottom:2}}>{b.name}</div>
+            <div style={{fontSize:12,color:MUTED,fontWeight:300}}>{b.shop} · {b.neighborhood}</div>
+            <div style={{marginTop:6}}>{b.tags.map(t=><span key={t} className="chip" style={{fontSize:9,cursor:"default"}}>{t}</span>)}</div>
           </div>
-          <div style={{textAlign:"right", flexShrink:0}}>
+          <div style={{textAlign:"right",flexShrink:0}}>
             <Stars r={b.rating}/><br/>
-            <span style={{fontFamily:"'DM Sans',sans-serif", fontSize:11, color:T.muted}}>{b.price} · {b.wait}</span>
+            <span style={{fontSize:11,color:MUTED}}>{b.price} · {b.wait}</span>
           </div>
         </div>
       ))}
     </div>
   );
 
-  if (screen==="brief") return (
-    <div className="fu" style={{maxWidth:580, margin:"0 auto", padding:"52px 24px 80px"}}>
-      <Lbl style={{marginBottom:16}}>Pre-Appointment Style Brief</Lbl>
-      <h1 style={{fontFamily:"'Playfair Display',serif", fontStyle:"italic", fontSize:"clamp(34px,7vw,50px)", fontWeight:900, color:T.ink, lineHeight:0.95, marginBottom:12}}>Help your barber<br/><span style={{color:T.accent}}>prepare.</span></h1>
-      <p style={{fontFamily:"'DM Sans',sans-serif", fontWeight:300, fontSize:14, color:T.muted, marginBottom:36}}>
-        Booking with <strong style={{color:T.ink, fontWeight:600}}>{barber.name}</strong>. Answer a few quick questions so they know what to expect.
-      </p>
-      {QUIZ_STEPS.map(q=>(
-        <div key={q.id} style={{marginBottom:20}}>
-          <label style={{fontFamily:"'DM Sans',sans-serif", fontSize:10, fontWeight:600, letterSpacing:"0.18em", textTransform:"uppercase", color:T.muted, display:"block", marginBottom:7}}>
-            {q.question}{q.optional?" (optional)":""}
-          </label>
-          <textarea rows={2} placeholder={q.placeholder} value={brief[q.id]||""} onChange={e=>setBrief({...brief,[q.id]:e.target.value})} style={{resize:"none"}}/>
-        </div>
+  if (screen==="confirm") return (
+    <div className="fu" style={{maxWidth:520,margin:"0 auto",padding:"52px 24px 80px"}}>
+      <Lbl style={{marginBottom:16}}>Book with {barber.name}</Lbl>
+      <h1 style={{fontFamily:"'Playfair Display',serif",fontStyle:"italic",fontSize:"clamp(36px,7vw,50px)",fontWeight:900,color:INK,lineHeight:0.95,marginBottom:32}}>
+        Pick your<br/><span style={{color:A}}>time.</span>
+      </h1>
+      {[["name","Your name","text"],["phone","Phone number","tel"]].map(([k,p,t])=>(
+        <input key={k} type={t} placeholder={p} value={form[k]} onChange={e=>setForm({...form,[k]:e.target.value})} style={{marginBottom:10}}/>
       ))}
-      <div style={{borderTop:"1px solid "+T.border, paddingTop:28, marginTop:8}}>
-        <div style={{fontFamily:"'DM Sans',sans-serif", fontSize:10, fontWeight:600, letterSpacing:"0.18em", textTransform:"uppercase", color:T.muted, marginBottom:16}}>Your Info</div>
-        {[["name","Your name","text"],["phone","Phone number","tel"]].map(([k,p,t])=>(
-          <input key={k} type={t} placeholder={p} value={form[k]} onChange={e=>setForm({...form,[k]:e.target.value})} style={{marginBottom:10}}/>
+      <input type="date" value={form.date} onChange={e=>setForm({...form,date:e.target.value})} style={{marginBottom:16,colorScheme:"light"}}/>
+      <div style={{display:"flex",flexWrap:"wrap",gap:7,marginBottom:28}}>
+        {TIMES.map(t=>(
+          <button key={t} onClick={()=>setForm({...form,time:t})} style={{padding:"8px 13px",fontSize:11,fontWeight:600,cursor:"pointer",background:form.time===t?A:"#fff",color:form.time===t?"#fff":MUTED,border:"1.5px solid "+(form.time===t?A:BORDER),transition:"all 0.15s"}}>{t}</button>
         ))}
-        <input type="date" value={form.date} onChange={e=>setForm({...form,date:e.target.value})} style={{marginBottom:16, colorScheme:"light"}}/>
-        <div style={{display:"flex", flexWrap:"wrap", gap:7, marginBottom:28}}>
-          {TIMES.map(t=>(
-            <button key={t} onClick={()=>setForm({...form,time:t})} style={{padding:"8px 13px", fontFamily:"'DM Sans',sans-serif", fontSize:11, fontWeight:600, cursor:"pointer", background:form.time===t?T.accent:"#fff", color:form.time===t?"#fff":T.muted, border:"1.5px solid "+(form.time===t?T.accent:T.border), transition:"all 0.15s"}}>{t}</button>
-          ))}
-        </div>
       </div>
-      <div style={{display:"flex", gap:12}}>
-        <button className="btn bo" onClick={()=>setScreen("pick")} style={{flex:1, padding:14, fontSize:11}}>← Back</button>
-        <button className="btn bp" onClick={()=>setScreen("confirm")} style={{flex:2, padding:14, fontSize:11}}>Confirm Booking →</button>
+      <div style={{display:"flex",gap:12}}>
+        <button className="btn bo" onClick={()=>setScreen("pick")} style={{flex:1,padding:14,fontSize:11}}>← Back</button>
+        <button className="btn bp" onClick={()=>setScreen("done")} style={{flex:2,padding:14,fontSize:11}}>Confirm →</button>
       </div>
     </div>
   );
 
   return (
-    <div className="fu" style={{maxWidth:520, margin:"0 auto", padding:"52px 24px 80px", textAlign:"center"}}>
-      <div style={{fontSize:56, marginBottom:24}}>✂️</div>
-      <Lbl style={{justifyContent:"center", marginBottom:16}}>You're Booked</Lbl>
-      <h1 style={{fontFamily:"'Playfair Display',serif", fontStyle:"italic", fontSize:"clamp(44px,9vw,68px)", fontWeight:900, color:T.ink, marginBottom:12}}>You're <span style={{color:T.accent}}>lined up.</span></h1>
-      <p style={{fontFamily:"'DM Sans',sans-serif", fontWeight:300, fontSize:15, color:T.muted, lineHeight:1.7, marginBottom:36}}>
-        Your style brief has been sent to <strong style={{color:T.ink, fontWeight:600}}>{barber.name}</strong>.<br/>They'll know exactly what to expect.
+    <div className="fu" style={{maxWidth:520,margin:"0 auto",padding:"52px 24px 80px",textAlign:"center"}}>
+      <div style={{fontSize:56,marginBottom:24}}>✂️</div>
+      <Lbl style={{justifyContent:"center",marginBottom:16}}>You're Booked</Lbl>
+      <h1 style={{fontFamily:"'Playfair Display',serif",fontStyle:"italic",fontSize:"clamp(44px,9vw,68px)",fontWeight:900,color:INK,marginBottom:12}}>
+        You're <span style={{color:A}}>lined up.</span>
+      </h1>
+      <p style={{fontWeight:300,fontSize:15,color:MUTED,lineHeight:1.7,marginBottom:36}}>
+        Confirmed with <strong style={{color:INK,fontWeight:600}}>{barber.name}</strong>
+        {form.date && <> on <strong style={{color:INK,fontWeight:600}}>{form.date}</strong></>}
+        {form.time && <> at <strong style={{color:INK,fontWeight:600}}>{form.time}</strong></>}.
       </p>
-      <div className="card" style={{padding:28, textAlign:"left", marginBottom:36}}>
-        {[["Barber",barber.name],["Shop",barber.shop],["Date",form.date||"TBD"],["Time",form.time||"TBD"],["Platform",barber.platform]].map(([k,v])=>(
-          <div key={k} style={{display:"flex", justifyContent:"space-between", padding:"10px 0", borderBottom:"1px solid "+T.border}}>
-            <span style={{fontFamily:"'DM Sans',sans-serif", fontSize:11, letterSpacing:"0.12em", textTransform:"uppercase", color:T.muted}}>{k}</span>
-            <span style={{fontFamily:"'DM Sans',sans-serif", fontSize:13, fontWeight:500, color:T.ink}}>{v}</span>
-          </div>
-        ))}
-      </div>
-      <button className="btn bp" onClick={()=>{setScreen("pick");setBarber(null);setForm({name:"",phone:"",date:"",time:""});setBrief({});}} style={{padding:"15px 40px", fontSize:11}}>Book Another →</button>
+      <button className="btn bp" onClick={()=>{setScreen("pick");setBarber(null);setForm({name:"",phone:"",date:"",time:""}); }} style={{padding:"15px 40px",fontSize:11}}>
+        Book Another →
+      </button>
     </div>
   );
 }
 
+// ─── ABOUT ───────────────────────────────────────────────────────────────────
 function About({ nav }) {
   return (
-    <div className="fu" style={{maxWidth:660, margin:"0 auto", padding:"52px 24px 80px"}}>
+    <div className="fu" style={{maxWidth:660,margin:"0 auto",padding:"52px 24px 80px"}}>
       <Lbl style={{marginBottom:16}}>About</Lbl>
-      <h1 style={{fontFamily:"'Playfair Display',serif", fontStyle:"italic", fontSize:"clamp(44px,9vw,68px)", fontWeight:900, color:T.ink, lineHeight:0.92, marginBottom:44}}>Built by a<br/><span style={{color:T.accent}}>real barber.</span></h1>
-      <div className="card" style={{padding:36, marginBottom:36, display:"flex", gap:24, alignItems:"flex-start", flexWrap:"wrap"}}>
-        <div style={{width:72, height:72, background:T.accentLight, border:"2px solid "+T.accentMid, display:"flex", alignItems:"center", justifyContent:"center", fontSize:32, flexShrink:0}}>✂</div>
+      <h1 style={{fontFamily:"'Playfair Display',serif",fontStyle:"italic",fontSize:"clamp(44px,9vw,68px)",fontWeight:900,color:INK,lineHeight:0.92,marginBottom:44}}>
+        Built by a<br/><span style={{color:A}}>real barber.</span>
+      </h1>
+      <div className="card" style={{padding:36,marginBottom:36,display:"flex",gap:24,alignItems:"flex-start",flexWrap:"wrap"}}>
+        <div style={{width:72,height:72,background:ACCENT_LIGHT,border:"2px solid "+ACCENT_MID,display:"flex",alignItems:"center",justifyContent:"center",fontSize:32,flexShrink:0}}>✂</div>
         <div style={{flex:1}}>
-          <h2 style={{fontFamily:"'Playfair Display',serif", fontSize:22, fontWeight:700, color:T.ink, marginBottom:4}}>Jazmyne Pragji</h2>
-          <div style={{fontFamily:"'DM Sans',sans-serif", fontSize:12, color:T.accent, letterSpacing:"0.08em", marginBottom:12}}>Barber · Au Pair · Founder</div>
+          <h2 style={{fontFamily:"'Playfair Display',serif",fontSize:22,fontWeight:700,color:INK,marginBottom:4}}>Jazmyne Pragji</h2>
+          <div style={{fontSize:12,color:A,letterSpacing:"0.08em",marginBottom:12}}>Licensed Barber · Founder</div>
           <div>{["Licensed Barber","Based in Bethesda, MD","Founder of LINED UP"].map(t=><span key={t} className="chip" style={{cursor:"default"}}>{t}</span>)}</div>
         </div>
       </div>
       {[
-        {h:"Why I Built This", b:"When I moved to the US, one of the hardest things was finding the right barber — someone who actually understood my hair and listened. I spent months going to the wrong places. I built LINED UP so nobody else has to waste their time or money in the wrong chair."},
-        {h:"The Barber Side",  b:"Half of every consultation is just figuring out what someone actually wants. LINED UP fixes that — clients come in prepared, barbers know what to expect, and the whole experience gets better for everyone."},
-        {h:"The Vision",       b:"LINED UP isn't just an app — it's a bridge between people and the right barber for them. I'm building direct integrations with Booksy and Squire so every booking comes with a style brief. Barbershop culture, powered by AI."},
+        {h:"Why I Built This",b:"When I moved to the US, one of the hardest things was finding the right barber — someone who actually understood my hair and listened. I built LINED UP so nobody else has to waste their time or money in the wrong chair."},
+        {h:"For Everyone",b:"LINED UP covers every hair type, texture, and gender. Whether you're looking for a 360 wave taper, a wolf cut, a loc retwist, or a modern mullet — we've got the cut and the barber for you."},
+        {h:"The Vision",b:"Every booking comes with a style brief. Clients come prepared. Barbers know what to expect. Barbershop culture, powered by AI."},
       ].map((s,i,arr)=>(
-        <div key={i} style={{marginBottom:36, paddingBottom:36, borderBottom:i<arr.length-1?"1px solid "+T.border:"none"}}>
-          <h3 style={{fontFamily:"'Playfair Display',serif", fontStyle:"italic", fontSize:26, color:T.ink, marginBottom:12}}>{s.h}</h3>
-          <p style={{fontFamily:"'DM Sans',sans-serif", fontWeight:300, fontSize:15, color:T.muted, lineHeight:1.8}}>{s.b}</p>
+        <div key={i} style={{marginBottom:36,paddingBottom:36,borderBottom:i<arr.length-1?"1px solid "+BORDER:"none"}}>
+          <h3 style={{fontFamily:"'Playfair Display',serif",fontStyle:"italic",fontSize:26,color:INK,marginBottom:12}}>{s.h}</h3>
+          <p style={{fontWeight:300,fontSize:15,color:MUTED,lineHeight:1.8}}>{s.b}</p>
         </div>
       ))}
-      <div style={{background:T.accentLight, border:"1px solid "+T.accentMid, padding:32, marginBottom:32}}>
-        <h3 style={{fontFamily:"'Playfair Display',serif", fontStyle:"italic", fontSize:26, color:T.ink, marginBottom:8}}>Are you a barber?</h3>
-        <p style={{fontFamily:"'DM Sans',sans-serif", fontWeight:300, fontSize:14, color:T.muted, lineHeight:1.7, marginBottom:20}}>Get listed and receive pre-appointment style briefs from every client.</p>
-        <button className="btn bp" style={{padding:"12px 28px", fontSize:11}}>Apply To Be Listed →</button>
+      <div style={{background:ACCENT_LIGHT,border:"1px solid "+ACCENT_MID,padding:32,marginBottom:32}}>
+        <h3 style={{fontFamily:"'Playfair Display',serif",fontStyle:"italic",fontSize:26,color:INK,marginBottom:8}}>Are you a barber?</h3>
+        <p style={{fontWeight:300,fontSize:14,color:MUTED,lineHeight:1.7,marginBottom:20}}>Get listed and receive pre-appointment style briefs from every client.</p>
+        <button className="btn bp" style={{padding:"12px 28px",fontSize:11}}>Apply To Be Listed →</button>
       </div>
-      <button className="btn bp" onClick={()=>nav("quiz")} style={{width:"100%", padding:17, fontSize:12}}>Try The Style Quiz →</button>
+      <button className="btn bp" onClick={()=>nav("quiz")} style={{width:"100%",padding:17,fontSize:12}}>Try The Style Quiz →</button>
     </div>
   );
 }
 
+// ─── APP SHELL ───────────────────────────────────────────────────────────────
 function LinedUp() {
-  const [page, setPage]             = useState("home");
-  const [quizResult, setQuizResult] = useState(null);
-  const topRef                      = useRef(null);
-  const nav = p => { setPage(p); topRef.current && topRef.current.scrollIntoView({behavior:"smooth"}); };
-  const navItems = [{id:"home",label:"Home"},{id:"quiz",label:"Find My Cut"},{id:"directory",label:"Barbers"},{id:"booking",label:"Book"},{id:"about",label:"About"}];
+  const [page, setPage]         = useState("home");
+  const [quizResult, setResult] = useState(null);
+  const topRef                  = useRef(null);
+
+  const nav = p => {
+    setPage(p);
+    setTimeout(()=>{ topRef.current && topRef.current.scrollIntoView({behavior:"smooth"}); }, 10);
+  };
+
+  const NAV = [
+    {id:"home",label:"Home"},
+    {id:"quiz",label:"Find My Cut"},
+    {id:"cuts",label:"All Cuts"},
+    {id:"directory",label:"Barbers"},
+    {id:"booking",label:"Book"},
+    {id:"about",label:"About"},
+  ];
 
   return (
-    <div style={{background:T.bg, minHeight:"100vh", color:T.ink}}>
+    <div style={{background:BG,minHeight:"100vh",color:INK}}>
       <div ref={topRef}/>
-      <nav style={{position:"sticky", top:0, zIndex:100, background:T.bg+"F2", backdropFilter:"blur(14px)", borderBottom:"1px solid "+T.border, display:"flex", alignItems:"center", justifyContent:"space-between", padding:"0 24px", height:54}}>
-        <div onClick={()=>nav("home")} style={{fontFamily:"'Playfair Display',serif", fontStyle:"italic", fontSize:22, fontWeight:900, color:T.ink, cursor:"pointer"}}>
-          Lined <span style={{color:T.accent}}>Up.</span>
+      <nav style={{position:"sticky",top:0,zIndex:100,background:BG+"F2",backdropFilter:"blur(14px)",borderBottom:"1px solid "+BORDER,display:"flex",alignItems:"center",justifyContent:"space-between",padding:"0 24px",height:54}}>
+        <div onClick={()=>nav("home")} style={{fontFamily:"'Playfair Display',serif",fontStyle:"italic",fontSize:22,fontWeight:900,color:INK,cursor:"pointer"}}>
+          Lined <span style={{color:A}}>Up.</span>
         </div>
-        <div style={{display:"flex", gap:24, alignItems:"center"}}>
-          {navItems.map(n=><span key={n.id} className="nl" onClick={()=>nav(n.id)} style={{color:page===n.id?T.accent:T.muted}}>{n.label}</span>)}
+        <div style={{display:"flex",gap:20,alignItems:"center",flexWrap:"wrap"}}>
+          {NAV.map(n=>(
+            <span key={n.id} className="nl" onClick={()=>nav(n.id)} style={{color:page===n.id?A:MUTED}}>{n.label}</span>
+          ))}
         </div>
       </nav>
+
       {page==="home"      && <Home nav={nav}/>}
-      {page==="quiz"      && <Quiz nav={nav} setResult={setQuizResult}/>}
+      {page==="quiz"      && <Quiz nav={nav} setResult={setResult}/>}
       {page==="result"    && quizResult && <Result data={quizResult} nav={nav}/>}
+      {page==="cuts"      && <AllCuts nav={nav}/>}
       {page==="directory" && <Directory nav={nav}/>}
       {page==="booking"   && <Booking nav={nav}/>}
       {page==="about"     && <About nav={nav}/>}
-      <footer style={{borderTop:"1px solid "+T.border, padding:"28px 24px", display:"flex", justifyContent:"space-between", alignItems:"center", flexWrap:"wrap", gap:12}}>
-        <div style={{fontFamily:"'Playfair Display',serif", fontStyle:"italic", fontWeight:900, fontSize:18, color:T.muted}}>Lined <span style={{color:T.accent}}>Up.</span></div>
-        <div style={{fontFamily:"'DM Sans',sans-serif", fontSize:10, color:"rgba(26,18,8,0.22)", letterSpacing:"0.14em"}}>AI-POWERED BARBER INTELLIGENCE · {new Date().getFullYear()}</div>
-        <div style={{display:"flex", gap:20}}>
-          {["Booksy","Squire"].map(p=><span key={p} style={{fontFamily:"'DM Sans',sans-serif", fontSize:10, color:"rgba(26,18,8,0.22)", letterSpacing:"0.12em"}}>WORKS WITH {p.toUpperCase()}</span>)}
+
+      <footer style={{borderTop:"1px solid "+BORDER,padding:"28px 24px",display:"flex",justifyContent:"space-between",alignItems:"center",flexWrap:"wrap",gap:12}}>
+        <div style={{fontFamily:"'Playfair Display',serif",fontStyle:"italic",fontWeight:900,fontSize:18,color:MUTED}}>
+          Lined <span style={{color:A}}>Up.</span>
+        </div>
+        <div style={{fontSize:10,color:"rgba(26,18,8,0.22)",letterSpacing:"0.14em"}}>
+          AI-POWERED BARBER INTELLIGENCE · {new Date().getFullYear()}
+        </div>
+        <div style={{display:"flex",gap:20}}>
+          {["Booksy","Squire"].map(p=>(
+            <span key={p} style={{fontSize:10,color:"rgba(26,18,8,0.22)",letterSpacing:"0.12em"}}>WORKS WITH {p.toUpperCase()}</span>
+          ))}
         </div>
       </footer>
     </div>
