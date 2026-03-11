@@ -732,85 +732,6 @@ style={{ padding:“13px 34px”, fontSize:11, opacity:(!input.trim()&&!current.
 
 // ─── RESULT ───────────────────────────────────────────────────────────────────
 
-function PhotoGallery({ cutName }) {
-const [open, setOpen]     = useState(false);
-const [photos, setPhotos] = useState([]);
-const [loading, setLoading] = useState(false);
-const [active, setActive] = useState(0);
-
-const queries = getPhotoQueries(cutName);
-
-const load = async () => {
-if (photos.length > 0) { setOpen(true); return; }
-setOpen(true);
-setLoading(true);
-// Use Unsplash source for reliable, free hair/barbershop photos
-const urls = queries.slice(0, 3).map((q, i) =>
-`https://source.unsplash.com/600x400/?${encodeURIComponent(q)}&sig=${Date.now() + i}`
-);
-setPhotos(urls);
-setLoading(false);
-};
-
-return (
-<div style={{ marginBottom:10 }}>
-<button
-className=“btn bo”
-onClick={load}
-style={{ width:“100%”, padding:“14px 24px”, fontSize:11, display:“flex”, alignItems:“center”, justifyContent:“center”, gap:10 }}
->
-<span style={{ fontSize:16 }}>📸</span>
-{open ? “Hide Examples” : “See What This Looks Like →”}
-</button>
-
-```
-  {open && (
-    <div style={{ marginTop:12, background:T.surface, border:`1px solid ${T.border}`, padding:20 }}>
-      <div style={{ fontFamily:"'DM Sans',sans-serif", fontSize:10, letterSpacing:"0.18em", textTransform:"uppercase", color:T.muted, fontWeight:600, marginBottom:14 }}>
-        Visual References — {cutName}
-      </div>
-
-      {loading ? (
-        <div style={{ textAlign:"center", padding:"32px 0", color:T.muted, fontFamily:"'DM Sans',sans-serif", fontSize:13 }}>Loading examples…</div>
-      ) : (
-        <>
-          {/* Main photo */}
-          <div style={{ position:"relative", marginBottom:10, overflow:"hidden", background:T.faint }}>
-            <img
-              src={photos[active]}
-              alt={cutName}
-              style={{ width:"100%", height:280, objectFit:"cover", display:"block" }}
-              onError={e => { e.target.src = `https://source.unsplash.com/600x400/?barbershop,haircut&sig=${active}`; }}
-            />
-            <div style={{ position:"absolute", bottom:10, right:10, background:"rgba(26,18,8,0.6)", color:"#fff", fontFamily:"'DM Sans',sans-serif", fontSize:10, padding:"4px 10px", letterSpacing:"0.1em" }}>
-              {active + 1} / {photos.length}
-            </div>
-          </div>
-
-          {/* Thumbnails */}
-          <div style={{ display:"flex", gap:8 }}>
-            {photos.map((p, i) => (
-              <div key={i} onClick={() => setActive(i)}
-                style={{ flex:1, height:72, overflow:"hidden", cursor:"pointer", border:`2px solid ${i === active ? T.accent : "transparent"}`, transition:"border-color 0.15s" }}>
-                <img src={p} alt="" style={{ width:"100%", height:"100%", objectFit:"cover", display:"block" }}
-                  onError={e => { e.target.src = `https://source.unsplash.com/200x150/?haircut,men&sig=${i+10}`; }} />
-              </div>
-            ))}
-          </div>
-
-          <p style={{ fontFamily:"'DM Sans',sans-serif", fontSize:12, color:T.muted, marginTop:12, lineHeight:1.6, fontWeight:300 }}>
-            These are reference photos to give you a visual idea. Your exact result will depend on your hair texture and your barber's style.
-          </p>
-        </>
-      )}
-    </div>
-  )}
-</div>
-```
-
-);
-}
-
 function Result({ data, nav }) {
 const { result:r } = data;
 const kw = (r.match_keywords||[]).map(k=>k.toLowerCase());
@@ -827,11 +748,6 @@ return (
 </div>
 
 ```
-  {/* Photo gallery — right under the cut name */}
-  <div style={{ marginBottom:32 }}>
-    <PhotoGallery cutName={r.recommended_cut} />
-  </div>
-
   {[
     { icon:"◈", label:"Why It Works For You",     body:r.why_it_works },
     { icon:"◎", label:"What To Say In The Chair", body:r.how_to_ask, hi:true },
